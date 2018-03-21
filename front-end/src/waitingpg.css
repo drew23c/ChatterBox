@@ -1,0 +1,75 @@
+.Wait-Page{
+  display: flex;
+  flex-flow: row wrap;
+  height:100vh;
+  width:100vw;
+}
+
+.Summary{
+  font-size: 25px;
+  width:50vw;
+  height:68vh;
+  color: #f5f1e3;
+  position: absolute;
+  z-index: 2;
+  background-color: black;
+  opacity: 0.40;   
+  left: 0;
+  
+}
+
+.blurb{
+  margin:40px;
+}
+
+.Wait-title{
+  text-align: center;
+}
+
+.Wait-img{
+width:100vw;
+z-index: -2;
+}
+
+.Wait-sum{
+  font-size: 40px;
+  width:49.2vw;
+  height:90vh;
+  color: #f5f1e3;
+  position: absolute;
+  z-index: 1;
+  background-color: black;
+  opacity: 0.40;
+  position: absolute;
+  right: 0;
+}
+
+.Wait-Bottom{
+  background-attachment: fixed;
+    background: #0f3854;
+    background: radial-gradient(ellipse at center,  #0a2e38  0%, #000000 70%);
+    background-size: 100%;
+    text-align: center;
+    top:70%;
+    font-family: 'Share Tech Mono', monospace;
+    color: #ffffff;
+    position: absolute;
+    width:99vw;
+    color: #daf6ff;
+    text-shadow: 0 0 20px rgba(10, 175, 230, 1),  0 0 20px rgba(10, 175, 230, 0);
+    z-index:1;
+}
+
+.timer {
+  font-size: 300px;
+  color: #DDDBCB;
+  text-align: center;
+}
+
+.number{
+  background: rgba(51, 51, 51, 0.53);
+  padding: 0 5px;
+  border-radius: 5px;
+  width: 60px;
+  text-align: center;
+}
