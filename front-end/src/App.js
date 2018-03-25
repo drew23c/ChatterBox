@@ -1,1 +1,15 @@
-//where our nav, routes and links are going to be 
+import React, { Component } from 'react';
+import Chat from "./components/Chat/Chat";
+import Home from "./components/Home/Home";
+
+class App extends Component {
+  render() {
+    return (
+      <div>
+          <Home />
+      </div>
+    );
+  }
+}
+
+export default App;
