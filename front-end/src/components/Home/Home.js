@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import axios from 'axios';
-import {Clock, TvGuide, Schedule} from "./Schedule";
+import {Schedule} from "./Schedule";
+import '../../styling/homepg.css'
 
 class Home extends Component {
     render() {

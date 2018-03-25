@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import { Link, Switch, Route } from "react-router-dom";
 
 export class Schedule extends Component {
     constructor() {
@@ -105,6 +106,7 @@ export class Schedule extends Component {
             </div>
         )
     }
+
 }
 
 
@@ -212,7 +214,7 @@ export const TvGuide = ({hour, arr, dateInput, moreTime, lessTime, handleDateInp
                     {tv.map(el => 
                     <tr key={el.id}>
                         <td>{el.show.network.name}</td>
-                        <td><a href="">{el.show.name}</a></td>
+                <td><Link to={`/chat/${el.show.name}/${el.show.id}`}>{el.show.name}</Link></td>
                         <td>{el.airtime.match(hour + ":00") ? schedHour1 :
                             schedHour1.replace(" ", el.airtime.slice(2).concat(" ")) }</td>
                         <td>{el.runtime}</td>
