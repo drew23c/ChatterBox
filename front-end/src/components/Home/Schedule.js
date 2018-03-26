@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import { Link, Switch, Route } from "react-router-dom";
+import FaAngleDoubleLeft from 'react-icons/lib/fa/angle-double-left';
+import FaAngleDoubleRight from 'react-icons/lib/fa/angle-double-right'
 
 export class Schedule extends Component {
     constructor() {
@@ -189,11 +191,8 @@ export const TvGuide = ({hour, arr, dateInput, moreTime, lessTime, handleDateInp
                 <button onClick={handleReset} id="reset">Reset</button>
                 {" "}
 
-                {/* Buttons are diabled when user reaches midnight. */}
-                <button disabled={hour === 0} 
-                    onClick={lessTime} >{"<"}</button>
-                <button disabled={hour === 23} 
-                    onClick={moreTime} >{">"}</button>
+             
+        
             </div>
             
             <table>
@@ -201,6 +200,15 @@ export const TvGuide = ({hour, arr, dateInput, moreTime, lessTime, handleDateInp
                     <tr>
                         <td id="title" colSpan="4">Schedule for:{" "}{date} <br /> 
                         On Air:{" "}{schedHour1}{" - "}{schedHour2} <br />
+                          {/* Buttons are diabled when user reaches midnight. */}
+
+                                 <FaAngleDoubleRight  size={30}  style={{float:'right', padding: '10px'}} disabled={hour === 23} onClick={lessTime}/>
+                        
+                        {/* Buttons are diabled when user reaches 0. */}
+
+                                 <FaAngleDoubleLeft  size={30} style={{float:'left', padding: '10px'}} disabled={hour === 0} onClick={moreTime}/>
+
+                     
                         </td>
                     </tr>
                     <tr>
@@ -229,7 +237,3 @@ export const TvGuide = ({hour, arr, dateInput, moreTime, lessTime, handleDateInp
     )
 }
 
-export default {
-    Clock, 
-    Schedule
-}; 

@@ -1,4 +1,8 @@
 #chatroom {
-     width: 40vw;
+    width: 20vw;
     margin-left: 50px;
+    border:2px black solid;
+    float:left;
+    top:150px;    
+    position: absolute;
  } 
