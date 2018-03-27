@@ -51,10 +51,3 @@ class Clock extends Component {
     }
 }
 export default Clock;
-
-
-{/* <div className="Clock-hours">{this.leading0(this.state.hours)} : {this.leading0(this.state.minutes)} : {this.leading0(this.state.seconds)}</div> */ }
-
-{/* <span class="format"><p>Hours</p></span>
-    <span class="format"><p>Minutes</p></span>
-    <span class="format"><p>Seconds</p></span> */}

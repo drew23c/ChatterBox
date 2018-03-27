@@ -39,8 +39,9 @@ export default class LoginForm extends Component {
 	render() {	
 		const { nickname, error } = this.state
 		return (
+			<div className='login-movement'>
 			<div className="login">
-				<form onSubmit={this.handleSubmit} className="login-form" >
+				<form onSubmit={this.handleSubmit} className="login-form">
 
 					<label htmlFor="nickname">
 						<h2>Got a nickname?</h2>
@@ -51,12 +52,14 @@ export default class LoginForm extends Component {
 						id="nickname"
 						value={nickname}
 						onChange={this.handleChange}
-						placeholder={'MYCoolUSername'}
+						placeholder={'Enter Username'}
 						/>
 						<div className="error">{error ? error:null}</div>
 
 				</form>
 			</div>
+			</div>
+			
 		);
 	}
 }

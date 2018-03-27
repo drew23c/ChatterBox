@@ -19,6 +19,11 @@ export default class ChatContainer extends Component {
 	  }
 	}
 
+// broadcast online users
+broadcast = data =>{
+	console.log(data)
+	this.setState({users: data.description})
+}
 	componentDidMount() {
 		const { socket } = this.props
 		this.initSocket(socket)
@@ -41,6 +46,16 @@ export default class ChatContainer extends Component {
 		socket.on(USER_CONNECTED, (users)=>{
 			this.setState({ users: values(users) })
 		})
+
+		const broadcast = data =>{
+			this.setState({
+				usersOnline: data.description
+				})
+			}
+			socket.on("broadcast", data =>{
+				broadcast(data)
+			})
+
 		socket.on(USER_DISCONNECTED, (users)=>{
 			const removedUsers = differenceBy( this.state.users, values(users), 'id')
 			this.removeUsersFromChat(removedUsers)
@@ -173,8 +188,9 @@ export default class ChatContainer extends Component {
 	}
 	render() {
 		const { user, logout } = this.props
-		const { chats, activeChat, users } = this.state
+		const { chats, activeChat, users, usersOnline } = this.state
 		return (
+			<div className='movement2'>
 			<div className="container">
 				<SideBar
 					logout={logout}
@@ -190,7 +206,7 @@ export default class ChatContainer extends Component {
 						activeChat !== null ? (
 
 							<div className="chat-room">
-								<ChatHeading name={activeChat.name} />
+								<ChatHeading name={activeChat.name} usersOnline={usersOnline} />
 								<Messages 
 									messages={activeChat.messages}
 									user={user}
@@ -216,8 +232,9 @@ export default class ChatContainer extends Component {
 						</div>
 					}
 				</div>
+				</div>
+				</div>
 
-			</div>
 		);
 	}
 }

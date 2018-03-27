@@ -2,14 +2,14 @@ const io = require('./index.js').io
 
 const { VERIFY_USER, USER_CONNECTED, USER_DISCONNECTED, 
 		LOGOUT, COMMUNITY_CHAT, MESSAGE_RECIEVED, MESSAGE_SENT,
-		TYPING, PRIVATE_MESSAGE, NEW_CHAT_USER  } = require('../Events')
+		TYPING, PRIVATE_MESSAGE, NEW_CHAT_USER } = require('../Events')
 
 const { createUser, createMessage, createChat } = require('../Factories')
 
 let connectedUsers = { }
 
 let communityChat = createChat({ isCommunity:true })
-
+let users = 0;
 module.exports = function(socket){
 					
 	// console.log('\x1bc'); //clears console
@@ -33,7 +33,8 @@ module.exports = function(socket){
 		user.socketId = socket.id
 		connectedUsers = addUser(connectedUsers, user)
 		socket.user = user
-
+		io.sockets.emit("broadcast", {description: `${users += 1} online`})
+		
 		sendMessageToChatFromUser = sendMessageToChat(user.name)
 		sendTypingFromUser = sendTypingToChat(user.name)
 
@@ -49,6 +50,8 @@ module.exports = function(socket){
 
 			io.emit(USER_DISCONNECTED, connectedUsers)
 			console.log("Disconnect", connectedUsers);
+			io.sockets.emit("broadcast", {description: `${users -= 1} online`})
+			
 		}
 	})
 
@@ -58,7 +61,8 @@ module.exports = function(socket){
 		connectedUsers = removeUser(connectedUsers, socket.user.name)
 		io.emit(USER_DISCONNECTED, connectedUsers)
 		console.log("Disconnect", connectedUsers);
-
+		io.sockets.emit("broadcast", {description: `${users -= 1} online`})
+		
 	})
 
 	//Get Community Chat

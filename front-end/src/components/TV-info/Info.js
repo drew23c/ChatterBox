@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import '../../styling/info.css'
 
 export class Room extends Component {
     constructor(props) {
@@ -39,9 +40,8 @@ export class Room extends Component {
         //let summary = epInfo.summary.replace(/(<p[^>]+?>|<p>|<\/p>)/img, "");
         //document.getElementById("sum").innerHTML = summary ? (summary) : "No summary avilable"
         return (
-            <div id="chatroom">
-                <h1>Chat Room</h1>
-                <img src={image.medium} />
+            <div className='flex-container'>
+                <img className='Info-img' src={image.original} />
                 <h3>Show:{" "}{showInfo.name}</h3>
                 <h3>Episode:{" "}{epInfo.name}</h3>
                 <p id="sum">{summary ? summary.replace(/(<p[^>]+?>|<p>|<\/p>)/img, "") : "No summary avilable"}</p>
