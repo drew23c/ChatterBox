@@ -21,7 +21,9 @@
 
 .blurb{
   margin:40px;
-  width:50vw;
+  width:375px;
+  text-align: left;
+  
 }
 
 .Wait-title{
@@ -69,7 +71,6 @@ z-index: -2;
 }
 
 .number{
-  position: absolute;
   background: rgba(51, 51, 51, 0.53);
   padding: 0 5px;
   border-radius: 5px;

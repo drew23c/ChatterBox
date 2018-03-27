@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link, Switch, Route } from "react-router-dom";
 import FaAngleDoubleLeft from 'react-icons/lib/fa/angle-double-left';
 import FaAngleDoubleRight from 'react-icons/lib/fa/angle-double-right'
+import '../../styling/homepg.css'
 
 export class Schedule extends Component {
     constructor() {
@@ -180,8 +181,8 @@ export const TvGuide = ({hour, arr, dateInput, moreTime, lessTime, handleDateInp
     })
 
     return (
-        <div id="tvguide">
-            <div id="tvcontrols">
+        <div className='flex-schedule'>
+            <div className='flex-schedule'>
                 <input type="date" 
                     id="date" 
                     value={userInput} 

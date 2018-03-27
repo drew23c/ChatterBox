@@ -49,9 +49,9 @@ textarea {
 .login-movement{
     width:600px;
     height:60vh;
-    margin-left:550px;
+    margin-left:750px;
     position: absolute;
-    border:2px black solid;
+    /* border:2px black solid; */
     margin-top:-750px;
 }
 
