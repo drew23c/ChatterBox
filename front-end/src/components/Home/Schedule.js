@@ -143,7 +143,7 @@ export class Clock extends Component {
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         return (
             <div>
-                <p>Today's Date:{" "}{date.toLocaleDateString('en-US', options)}</p>
+                <p>{date.toLocaleDateString('en-US', options)}</p>
                 <p>Time Now:{" "}{date.toLocaleTimeString()}</p>
             </div>
         )
@@ -181,8 +181,8 @@ export const TvGuide = ({hour, arr, dateInput, moreTime, lessTime, handleDateInp
     })
 
     return (
-        <div className='flex-schedule'>
-            <div className='flex-schedule'>
+        <div>
+            <div>
                 <input type="date" 
                     id="date" 
                     value={userInput} 
@@ -213,20 +213,22 @@ export const TvGuide = ({hour, arr, dateInput, moreTime, lessTime, handleDateInp
                         </td>
                     </tr>
                     <tr>
-                        <th>Network</th>
+                        <th>Hour</th>
                         <th>Show</th>
-                        <th>Airtime</th>
-                        <th>Runtime (minutes)</th>
+                        <th>Network</th>
+
+                        {/* <th>Runtime (mins)</th> */}
                     </tr>
                 </thead>
                 <tbody>
                     {tv.map(el => 
                     <tr key={el.id}>
-                        <td>{el.show.network.name}</td>
-                <td><Link to={`/chat/${el.show.name}/${el.show.id}`}>{el.show.name}</Link></td>
-                        <td>{el.airtime.match(hour + ":00") ? schedHour1 :
+                     <td>{el.airtime.match(hour + ":00") ? schedHour1 :
                             schedHour1.replace(" ", el.airtime.slice(2).concat(" ")) }</td>
-                        <td>{el.runtime}</td>
+                        
+                <td><Link to={`/chat/${el.show.name}/${el.show.id}`}>{el.show.name}</Link></td>
+                <td>{el.show.network.name}</td>
+                        {/* <td>{el.runtime}</td> */}
                     </tr>)}
                 
                     <tr>

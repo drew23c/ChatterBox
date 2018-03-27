@@ -1,7 +1,12 @@
+html {
+    height: 100%;
+}
+
 body {
     padding-bottom: 200px;
     text-align: center;
     background-color:#F5F1E3;
+    height: 100%;
 }
 
 table {
@@ -14,8 +19,8 @@ table, td, th {
 }
 
 td, th {
-    width: 200px;
-    height: 60px;
+    width: 250px;
+    height: 50px;
 }
 
 /* Controls head of TV Guide table. */
@@ -100,7 +105,8 @@ a {
 }
 
 .flex-schedule {
-    
+    border-right: 4px solid black;
+    padding-right: 30px;
 }
 
 .flex-popular{
@@ -114,6 +120,7 @@ a {
 
 .divider{
     width: 3px;
-    height:100vh;
+    margin: 2px 0;
+    height: 100%;
     background-color:black;
 }
