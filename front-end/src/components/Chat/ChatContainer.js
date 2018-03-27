@@ -7,8 +7,11 @@ import ChatHeading from './ChatHeading'
 import Messages from '../messages/Messages'
 import MessageInput from '../messages/MessageInput'
 import { values, difference, differenceBy } from 'lodash'
+<<<<<<< HEAD
 import Users from '../UsersOnline/Users'
 
+=======
+>>>>>>> 59c4ec94fc297ea86285d56631060cc4587cba83
 
 export default class ChatContainer extends Component {
 	constructor(props) {
@@ -17,6 +20,7 @@ export default class ChatContainer extends Component {
 	  this.state = {
 		  chats:[],
 		  users:[],
+<<<<<<< HEAD
 		  activeChat:null
 	  }
 	}
@@ -26,6 +30,17 @@ export default class ChatContainer extends Component {
 		console.log(data)
 		this.setState({users: data.description})
 	}
+=======
+	  	activeChat:null
+	  }
+	}
+
+// broadcast online users
+broadcast = data =>{
+	console.log(data)
+	this.setState({users: data.description})
+}
+>>>>>>> 59c4ec94fc297ea86285d56631060cc4587cba83
 	componentDidMount() {
 		const { socket } = this.props
 		this.initSocket(socket)
@@ -45,6 +60,7 @@ export default class ChatContainer extends Component {
 		socket.on('connect', ()=>{
 			socket.emit(COMMUNITY_CHAT, this.resetChat)
 		})
+<<<<<<< HEAD
 		socket.on(USER_CONNECTED, (users, data)=>{
 			this.setState({ users: values(users) })		
 		})
@@ -56,14 +72,32 @@ export default class ChatContainer extends Component {
 		socket.on("broadcast", data =>{
 			broadcast(data)
 		})
+=======
+		socket.on(USER_CONNECTED, (users)=>{
+			this.setState({ users: values(users) })
+		})
+
+		const broadcast = data =>{
+			this.setState({
+				usersOnline: data.description
+				})
+			}
+			socket.on("broadcast", data =>{
+				broadcast(data)
+			})
+
+>>>>>>> 59c4ec94fc297ea86285d56631060cc4587cba83
 		socket.on(USER_DISCONNECTED, (users)=>{
 			const removedUsers = differenceBy( this.state.users, values(users), 'id')
 			this.removeUsersFromChat(removedUsers)
 			this.setState({ users: values(users) })			
 		})
 		socket.on(NEW_CHAT_USER, this.addUserToChat)
+<<<<<<< HEAD
 
 		
+=======
+>>>>>>> 59c4ec94fc297ea86285d56631060cc4587cba83
 	}
 
 	sendOpenPrivateMessage = (reciever) => {
@@ -189,25 +223,42 @@ export default class ChatContainer extends Component {
 		this.setState({activeChat})
 	}
 	render() {
+<<<<<<< HEAD
 		const { user, logout  } = this.props
 		const { chats, activeChat, users, usersOnline } = this.state
 		return (
 			<div className="container">
 				<SideBar
 					logout={logout}
+=======
+		const { user, logout } = this.props
+		const { chats, activeChat, users, usersOnline } = this.state
+		return (
+			<div className='movement2'>
+			<div className="container">
+				{/* <SideBar
+>>>>>>> 59c4ec94fc297ea86285d56631060cc4587cba83
 					chats={chats}
 					user={user}
 					users={users}
 					activeChat={activeChat}
 					setActiveChat={this.setActiveChat}
 					onSendPrivateMessage={this.sendOpenPrivateMessage}
+<<<<<<< HEAD
 					/>
+=======
+					/> */}
+>>>>>>> 59c4ec94fc297ea86285d56631060cc4587cba83
 				<div className="chat-room-container">
 					{
 						activeChat !== null ? (
 
 							<div className="chat-room">
+<<<<<<< HEAD
 								<ChatHeading name={activeChat.name} usersOnline={usersOnline} />
+=======
+								<ChatHeading name={activeChat.name} logout={logout} usersOnline={usersOnline} />
+>>>>>>> 59c4ec94fc297ea86285d56631060cc4587cba83
 								<Messages 
 									messages={activeChat.messages}
 									user={user}
@@ -233,8 +284,14 @@ export default class ChatContainer extends Component {
 						</div>
 					}
 				</div>
+<<<<<<< HEAD
 
 			</div>
+=======
+				</div>
+			</div>
+
+>>>>>>> 59c4ec94fc297ea86285d56631060cc4587cba83
 		);
 	}
 }
