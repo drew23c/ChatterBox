@@ -192,21 +192,20 @@ broadcast = data =>{
 		return (
 			<div className='movement2'>
 			<div className="container">
-				<SideBar
-					logout={logout}
+				{/* <SideBar
 					chats={chats}
 					user={user}
 					users={users}
 					activeChat={activeChat}
 					setActiveChat={this.setActiveChat}
 					onSendPrivateMessage={this.sendOpenPrivateMessage}
-					/>
+					/> */}
 				<div className="chat-room-container">
 					{
 						activeChat !== null ? (
 
 							<div className="chat-room">
-								<ChatHeading name={activeChat.name} usersOnline={usersOnline} />
+								<ChatHeading name={activeChat.name} logout={logout} usersOnline={usersOnline} />
 								<Messages 
 									messages={activeChat.messages}
 									user={user}
@@ -233,7 +232,7 @@ broadcast = data =>{
 					}
 				</div>
 				</div>
-				</div>
+			</div>
 
 		);
 	}

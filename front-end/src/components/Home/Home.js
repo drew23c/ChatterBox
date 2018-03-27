@@ -17,9 +17,8 @@ class Home extends Component {
             <div className='flex-schedule'>
             <Schedule />
             </div>
-<div className='divider'></div>
             <div className="flex-popular">
-                <p> HEYYYYYY </p>
+                <p> Popular Content </p>
             </div>
         </div>
       );

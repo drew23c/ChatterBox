@@ -2,9 +2,9 @@ import React from 'react';
 import FAVideo from 'react-icons/lib/fa/video-camera'
 import FAUserPlus from 'react-icons/lib/fa/user-plus'
 import MdEllipsisMenu from 'react-icons/lib/md/keyboard-control'
+import MdEject from 'react-icons/lib/md/eject'
 
-export default function({name, numberOfUsers, usersOnline}) {
-	
+export default function({name, numberOfUsers, usersOnline, logout}) {
 	return (
 		<div className="chat-header">
 			<div className="user-info">
@@ -15,10 +15,10 @@ export default function({name, numberOfUsers, usersOnline}) {
 					<span>{numberOfUsers ? numberOfUsers : null}</span>
 				</div>
 			</div>
-			<div className="options">
-				<FAVideo />
-				<FAUserPlus />
-				<MdEllipsisMenu />
+			<div>
+			<div onClick={()=>{logout()}} title="Logout" className="logout">
+			<MdEject/>	
+		</div>
 			</div>
 		</div>
 	);

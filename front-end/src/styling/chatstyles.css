@@ -34,16 +34,16 @@ textarea {
     width:1190px;
     height:100vh;
     margin-left:450px;
-    position: absolute;
-    margin-top:-450px;    
+    position: fixed;
+    /* margin-top:-450px;     */
 }
 
 .movement2{
     width:1190px;
-    height:100vh;
-    margin-left:450px;
-    position: absolute;
-    margin-top:-830px;    
+    height:90%;
+    margin-left:550px;
+    position: fixed;
+    margin-top:-890px;    
 }
 
 .login-movement{
