@@ -8,12 +8,12 @@ const uuidv4 = require('uuid/v4')
 *	@param {object} 
 *		name {string}
 */
-const createUser = ({name = "", socketId = null } = {})=>(
+const createUser = ({name = "", socketId = null, role = ['admin','user','guest'] } = {})=>(
 	{
 		id:uuidv4(),
 		name,
-		socketId
-		
+		socketId,
+		role: getRole(role)
 	}
 )
 
@@ -82,6 +82,9 @@ const getTime = (date)=>{
 	return `${date.getHours()}:${("0"+date.getMinutes()).slice(-2)}`
 }
 
+const getRole = (role) =>{
+	return role.find(r => r)
+}
 module.exports = {
 	createMessage,
 	createChat,

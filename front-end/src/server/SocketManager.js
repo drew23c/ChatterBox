@@ -2,26 +2,14 @@ const io = require('./index.js').io
 
 const { VERIFY_USER, USER_CONNECTED, USER_DISCONNECTED, 
 		LOGOUT, COMMUNITY_CHAT, MESSAGE_RECIEVED, MESSAGE_SENT,
-<<<<<<< HEAD
-		TYPING, PRIVATE_MESSAGE, NEW_CHAT_USER, NUM_USER_CONNECTED  } = require('../Events')
-
-const { createUser, createMessage, createChat, getNumUsers } = require('../Factories')
-=======
 		TYPING, PRIVATE_MESSAGE, NEW_CHAT_USER } = require('../Events')
 
 const { createUser, createMessage, createChat } = require('../Factories')
->>>>>>> 59c4ec94fc297ea86285d56631060cc4587cba83
 
 let connectedUsers = { }
 
 let communityChat = createChat({ isCommunity:true })
-<<<<<<< HEAD
-
-let users = 0
-
-=======
 let users = 0;
->>>>>>> 59c4ec94fc297ea86285d56631060cc4587cba83
 module.exports = function(socket){
 					
 	// console.log('\x1bc'); //clears console
@@ -31,16 +19,12 @@ module.exports = function(socket){
 
 	let sendTypingFromUser;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 59c4ec94fc297ea86285d56631060cc4587cba83
 	//Verify Username
 	socket.on(VERIFY_USER, (nickname, callback)=>{
 		if(isUser(connectedUsers, nickname)){
 			callback({ isUser:true, user:null })
 		}else{
-			callback({ isUser:false, user:createUser({name:nickname, socketId:socket.id})})
+			callback({ isUser:false, user:createUser({name:nickname, socketId:socket.id, socketId:socket.id})})
 		}
 	})
 
@@ -50,11 +34,7 @@ module.exports = function(socket){
 		connectedUsers = addUser(connectedUsers, user)
 		socket.user = user
 		io.sockets.emit("broadcast", {description: `${users += 1} online`})
-<<<<<<< HEAD
-
-=======
 		
->>>>>>> 59c4ec94fc297ea86285d56631060cc4587cba83
 		sendMessageToChatFromUser = sendMessageToChat(user.name)
 		sendTypingFromUser = sendTypingToChat(user.name)
 
@@ -71,10 +51,7 @@ module.exports = function(socket){
 			io.emit(USER_DISCONNECTED, connectedUsers)
 			console.log("Disconnect", connectedUsers);
 			io.sockets.emit("broadcast", {description: `${users -= 1} online`})
-<<<<<<< HEAD
-=======
 			
->>>>>>> 59c4ec94fc297ea86285d56631060cc4587cba83
 		}
 	})
 
@@ -85,10 +62,7 @@ module.exports = function(socket){
 		io.emit(USER_DISCONNECTED, connectedUsers)
 		console.log("Disconnect", connectedUsers);
 		io.sockets.emit("broadcast", {description: `${users -= 1} online`})
-<<<<<<< HEAD
-=======
 		
->>>>>>> 59c4ec94fc297ea86285d56631060cc4587cba83
 	})
 
 	//Get Community Chat
@@ -104,10 +78,6 @@ module.exports = function(socket){
 		sendTypingFromUser(chatId, isTyping)
 	})
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 59c4ec94fc297ea86285d56631060cc4587cba83
 	socket.on(PRIVATE_MESSAGE, ({reciever, sender, activeChat})=>{
 		if(reciever in connectedUsers){
 			const recieverSocket = connectedUsers[reciever].socketId
@@ -129,10 +99,6 @@ module.exports = function(socket){
 			}
 		}
 	})
-<<<<<<< HEAD
-=======
-
->>>>>>> 59c4ec94fc297ea86285d56631060cc4587cba83
 }
 /*
 * Returns a function that will take a chat id and a boolean isTyping
@@ -191,12 +157,3 @@ function removeUser(userList, username){
 function isUser(userList, username){
   	return username in userList
 }
-<<<<<<< HEAD
-
-function numOfUsers(user){
-	return (users) =>{
-		io.sockets.emit(`${users += 1}`)
-	}
-}
-=======
->>>>>>> 59c4ec94fc297ea86285d56631060cc4587cba83
