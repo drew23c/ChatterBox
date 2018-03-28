@@ -83,7 +83,7 @@ const getTime = (date)=>{
 }
 
 const getRole = (role) =>{
-	return role.find(r => r)
+	return role.filter(r => r === r)
 }
 module.exports = {
 	createMessage,

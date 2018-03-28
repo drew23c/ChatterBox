@@ -34,13 +34,14 @@ module.exports = function(socket){
 		connectedUsers = addUser(connectedUsers, user)
 		socket.user = user
 		io.sockets.emit("broadcast", {description: `${users += 1} online`})
+		console.log(user.name)
 		
 		sendMessageToChatFromUser = sendMessageToChat(user.name)
 		sendTypingFromUser = sendTypingToChat(user.name)
 
 		io.emit(USER_CONNECTED, connectedUsers)
 		console.log(connectedUsers);
-
+		io.sockets.emit("show", {show: `${user.name} has joined`})
 	})
 	
 	//User disconnects
@@ -51,7 +52,8 @@ module.exports = function(socket){
 			io.emit(USER_DISCONNECTED, connectedUsers)
 			console.log("Disconnect", connectedUsers);
 			io.sockets.emit("broadcast", {description: `${users -= 1} online`})
-			
+			io.sockets.emit("show", {show: `${socket.user.name} has left`})
+
 		}
 	})
 
@@ -62,7 +64,8 @@ module.exports = function(socket){
 		io.emit(USER_DISCONNECTED, connectedUsers)
 		console.log("Disconnect", connectedUsers);
 		io.sockets.emit("broadcast", {description: `${users -= 1} online`})
-		
+		io.sockets.emit("show", {show: `${socket.user.name} has left`})
+
 	})
 
 	//Get Community Chat

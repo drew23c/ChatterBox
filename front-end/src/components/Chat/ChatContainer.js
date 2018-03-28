@@ -55,7 +55,21 @@ export default class ChatContainer extends Component {
 			socket.on("broadcast", data =>{
 				broadcast(data)
 			})
-
+		
+		const show = data =>{
+			let userShow = document.getElementById('userShow')
+			this.setState({
+				userShow: data.show
+			})
+			setTimeout((data)=>{
+				this.setState({
+					userShow:" "
+				})
+			}, 5000)
+			}
+			socket.on("show", data =>{
+				show(data)
+			})
 		socket.on(USER_DISCONNECTED, (users)=>{
 			const removedUsers = differenceBy( this.state.users, values(users), 'id')
 			this.removeUsersFromChat(removedUsers)
@@ -188,7 +202,7 @@ export default class ChatContainer extends Component {
 	}
 	render() {
 		const { user, logout } = this.props
-		const { chats, activeChat, users, usersOnline } = this.state
+		const { chats, activeChat, users, usersOnline, userShow } = this.state
 		return (
 			<div className='movement2'>
 			<div className="container">
@@ -205,7 +219,7 @@ export default class ChatContainer extends Component {
 						activeChat !== null ? (
 
 							<div className="chat-room">
-								<ChatHeading name={activeChat.name} logout={logout} usersOnline={usersOnline} />
+								<ChatHeading name={activeChat.name} logout={logout} usersOnline={usersOnline} show={userShow} />
 								<Messages 
 									messages={activeChat.messages}
 									user={user}
