@@ -20,6 +20,7 @@ export class Schedule extends Component {
     // Handles date input by user. Gets US TV schedule for day specified.
     handleDateInput = () => {
         const {userInput} = this.state;
+        console.log('HI BEN')
         axios.get(`http://api.tvmaze.com/schedule?date=${this.state.userInput}`)
         .then( res => {
             console.log("res:", res);
