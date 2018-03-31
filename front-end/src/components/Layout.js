@@ -23,7 +23,7 @@ export default class Layout extends Component {
 	}
 
 	/*
-	*	Connect to and initializes the socket.
+	*	Create socket and connect to server.
 	*/
 	initSocket = ()=>{
 		const socket = io(socketUrl)
@@ -57,14 +57,22 @@ export default class Layout extends Component {
 
 
 	render() {
-		const { socket, user } = this.state
+		const { socket, user } = this.state;
+    const { roomName } = this.props;
 		return (
 			<div className="container">
 				{
 					!user ?	
-					<LoginForm socket={socket} setUser={this.setUser} />
+            <LoginForm 
+                socket={socket} 
+                setUser={this.setUser} 
+                roomName={roomName} />
 					:
-					<ChatContainer socket={socket} user={user} logout={this.logout}/>
+            <ChatContainer 
+                socket={socket} 
+                user={user} 
+                logout={this.logout}
+                roomName={roomName} />
 				}
 			</div>
 		);

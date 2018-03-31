@@ -1,9 +1,9 @@
 const app = require('http').createServer()
-const io = module.exports.io =require('socket.io')(app)
+const io = module.exports.io = require('socket.io')(app)
 
 const PORT = process.env.port || 3231;
 
-const SocketManager = require('./SocketManager');
+const SocketManager = require('./SocketManager')(io);
 
 io.on('connection', SocketManager);
 
