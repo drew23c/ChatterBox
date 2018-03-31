@@ -124,6 +124,10 @@ a {
     background-color:black;
 }
 
+.arrow{
+    color:gray;
+}
+
 #popular {
     width: 50vw;
 }
