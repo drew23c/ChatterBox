@@ -52,6 +52,9 @@ module.exports = function(socket){
 			io.emit(USER_DISCONNECTED, connectedUsers)
 			console.log("Disconnect", connectedUsers);
 			io.sockets.emit("broadcast", {description: `${users -= 1} online`})
+			if(users < 0){
+				io.sockets.emit("broadcast", {description: `${users = 0} online`})
+			}
 			io.sockets.emit("show", {show: `${socket.user.name} has left`})
 
 		}
@@ -64,6 +67,9 @@ module.exports = function(socket){
 		io.emit(USER_DISCONNECTED, connectedUsers)
 		console.log("Disconnect", connectedUsers);
 		io.sockets.emit("broadcast", {description: `${users -= 1} online`})
+		if(users < 0){
+			io.sockets.emit("broadcast", {description: `${users = 0} online`})
+		}
 		io.sockets.emit("show", {show: `${socket.user.name} has left`})
 
 	})
