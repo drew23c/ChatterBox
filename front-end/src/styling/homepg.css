@@ -110,7 +110,6 @@ a {
 }
 
 .flex-popular{
-    font-size: 50px;
     
  }
 
@@ -123,4 +122,22 @@ a {
     margin: 2px 0;
     height: 100%;
     background-color:black;
+}
+
+#popular {
+    width: 50vw;
+}
+
+#pop-map {
+    margin: 5px;
+    display: inline-block;
+}
+
+#pop-img {
+    height: 250px;
+    width: auto;
+}
+
+#popular a {
+    padding: none;
 }

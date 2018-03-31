@@ -1,14 +1,8 @@
 import React, {Component} from 'react';
 import {Schedule} from "./Schedule";
 import '../../styling/homepg.css'
+import Popular from './Popular';
 
-const Blah = () =>{
-    return(
-        <p>
-            TESTING
-         </p>
-    )
-}
 
 class Home extends Component {
     render() {
@@ -18,7 +12,7 @@ class Home extends Component {
             <Schedule />
             </div>
             <div className="flex-popular">
-                <p> Popular Content </p>
+                <Popular />
             </div>
         </div>
       );

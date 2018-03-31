@@ -29,8 +29,6 @@
 }
 
 .flex-container {
-    display: -ms-flexbox;
-    display: -webkit-flex;
     display: flex;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
@@ -48,6 +46,7 @@
     -ms-flex-align: start;
     align-items: flex-start;
     width:450px;
+    /* position: absolute; */
     }
 
 .hey {
