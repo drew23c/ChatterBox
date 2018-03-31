@@ -5,7 +5,8 @@ const { VERIFY_USER, USER_CONNECTED, USER_DISCONNECTED,
 
 const { createUser, createMessage, createChat } = require('../Factories')
 
-//let connectedUsers = { }
+let connectedUsers = { }
+let users = 0;
 
 //let communityChat = createChat({ isCommunity:true })
 let chatRooms = {};
@@ -38,7 +39,9 @@ module.exports = function(io) {
     //User Connects with username
     socket.on(USER_CONNECTED, (user)=>{
       user.socketId = socket.id
-      socket.user = user
+	  socket.user = user
+	  io.sockets.emit("broadcast", {description: `${users += 1} online`})	  
+	  io.sockets.emit("show", {show: `${user.name} has joined`})
     })
 
     socket.on(JOIN_ROOM, (user, roomName, callback) => {
@@ -66,14 +69,18 @@ module.exports = function(io) {
         if("user" in socket){
           let room = chatRooms[roomName];
           room.users = removeUser(room.users, user.name);
-          io.emit(USER_DISCONNECTED, room.users);
+		  io.emit(USER_DISCONNECTED, room.users);
+		  io.sockets.emit("broadcast", {description: `${users -= 1} online`})
+		  io.sockets.emit("show", {show: `${socket.user.name} has left`})
         }
       });
       //User logsout
       socket.on(LOGOUT, ()=>{
         let room = chatRooms[roomName];
         room.users = removeUser(room.users, socket.user.name);
-        io.emit(USER_DISCONNECTED, connectedUsers);
+		io.emit(USER_DISCONNECTED, connectedUsers);
+		io.sockets.emit("show", {show: `${socket.user.name} has left`})
+		io.sockets.emit("broadcast", {description: `${users -= 1} online`})
         console.log("Disconnect", connectedUsers);
       })
 
