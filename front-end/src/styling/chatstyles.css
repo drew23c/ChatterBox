@@ -35,21 +35,21 @@ textarea {
     height:100vh;
     margin-left:450px;
     position: fixed;
-    /* margin-top:-450px;     */
+    margin-top:-450px;    
 }
 
-.movement2{
+/* .movement2{
     width:1190px;
     height:90%;
     margin-left:550px;
     position: fixed;
-    margin-top:-890px;    
-}
+    margin-top:-820px;    
+} */
 
 .login-movement{
     width:600px;
     height:60vh;
-    margin-left:750px;
+    margin-left:400px;
     position: absolute;
     /* border:2px black solid; */
     margin-top:-750px;
@@ -307,7 +307,7 @@ textarea {
 
 .chat-room-container {
     height: 100%;
-    width: 66.25%
+    width: 60%
 }
 
 @media screen and (max-width: 510px) {
@@ -324,7 +324,7 @@ textarea {
     display: grid;
     grid-template: 8vh 1fr 8vh / 100%;
     height: 100%;
-    width: 100%
+    width: 60%
 }
 
 .chat-room.choose {
