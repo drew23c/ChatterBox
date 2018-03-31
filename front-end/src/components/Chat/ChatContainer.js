@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SideBar from '../sidebar/SideBar'
 import { COMMUNITY_CHAT, MESSAGE_SENT, MESSAGE_RECIEVED, 
 				TYPING, PRIVATE_MESSAGE, USER_CONNECTED, USER_DISCONNECTED,
-				NEW_CHAT_USER } from '../../Events'
+				NEW_CHAT_USER, JOIN_ROOM } from '../../Events'
 import ChatHeading from './ChatHeading'
 import Messages from '../messages/Messages'
 import MessageInput from '../messages/MessageInput'
@@ -38,11 +38,18 @@ broadcast = data =>{
 	}
 	
 	initSocket(socket){
-		socket.emit(COMMUNITY_CHAT, this.resetChat)
-		socket.on(PRIVATE_MESSAGE, this.addChat)
+    const {roomName, user} = this.props;
+		socket.emit(JOIN_ROOM, user, roomName, this.resetChat);
+		//socket.on(PRIVATE_MESSAGE, this.addChat)
+    /* Seems to be useless. Besides, the socket has long since
+     * connected with the server, if messages are being emitted back
+     * and forth. Which they must have been, because VERIFY_USER has
+     * necessarily been sent back and forth between the client and
+     * server.
 		socket.on('connect', ()=>{
 			socket.emit(COMMUNITY_CHAT, this.resetChat)
 		})
+    */
 		socket.on(USER_CONNECTED, (users)=>{
 			this.setState({ users: values(users) })
 		})
@@ -110,12 +117,19 @@ broadcast = data =>{
 		const { chats } = this.state
 
 		const newChats = reset ? [chat] : [...chats, chat]
-		this.setState({chats:newChats, activeChat:reset ? chat : this.state.activeChat})
+		this.setState({
+      chats:newChats,
+      activeChat: (reset ? chat : this.state.activeChat)
+    })
 
-		const messageEvent = `${MESSAGE_RECIEVED}-${chat.id}`
-		const typingEvent = `${TYPING}-${chat.id}`
+		//const messageEvent = `${MESSAGE_RECIEVED}-${chat.id}`
+		const messageEvent = `${MESSAGE_RECIEVED}`;
+		//const typingEvent = `${TYPING}-${chat.id}`
 
-		socket.on(typingEvent, this.updateTypingInChat(chat.id))
+		//socket.on(typingEvent, this.updateTypingInChat(chat.id))
+    /* This is where messages get added to the chat, when a message
+     * comes back from the server)
+     */
 		socket.on(messageEvent, this.addMessageToChat(chat.id))
 	}
 
@@ -127,9 +141,10 @@ broadcast = data =>{
 	*/
 	addMessageToChat = (chatId)=>{
 		return message => {
+      console.log("Message:", message);
 			const { chats } = this.state
 			let newChats = chats.map((chat)=>{
-				if(chat.id === chatId)
+				//if(chat.id === chatId)
 					chat.messages.push(message)
 				return chat
 			})
