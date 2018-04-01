@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../../styling/chatpg.css';
 
 export default class Messages extends Component {
 	constructor(props) {
@@ -37,6 +38,7 @@ export default class Messages extends Component {
 									<div className="data">
 										<div className="message">{mes.message}</div>
 										<div className="name">{mes.sender}</div>
+										<div className="spam">{mes.spam}</div>
 									</div>
 								</div>
 

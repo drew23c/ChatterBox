@@ -148,6 +148,15 @@ const show = data =>{
      * comes back from the server)
      */
 		socket.on(messageEvent, this.addMessageToChat(chat.id))
+		const broadcast = data =>{
+			this.setState({
+				userSpam: data.spam
+				})
+			}
+			socket.on("broadcast", data =>{
+					broadcast(data)
+				})
+
 	}
 
 	/*
@@ -219,7 +228,7 @@ const show = data =>{
 		this.setState({activeChat})
 	}
 	render() {
-		const { user, logout } = this.props
+		const { user, logout,userSpam } = this.props
 		const { chats, activeChat, users, usersOnline,userShow } = this.state
 		return (
 			<div className='movement2'>

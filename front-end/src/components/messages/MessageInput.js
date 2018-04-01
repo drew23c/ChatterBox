@@ -83,12 +83,13 @@ export default class MessageInput extends Component {
 								this.setState({message:target.value})
 							}
 						}
+						maxLength = "150"
 						/>
 					<button
 						disabled = { message.length < 1 }
 						type = "submit"
 						className = "send"
-
+						id="disable-button"
 					> Send </button>
 				</form>
 

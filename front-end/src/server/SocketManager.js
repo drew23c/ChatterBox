@@ -39,9 +39,9 @@ return function(socket){
   //User Connects with username
   socket.on(USER_CONNECTED, (user)=>{
     user.socketId = socket.id
-  socket.user = user
-  io.sockets.emit("broadcast", {description: `${users += 1} online`})	  
-  io.sockets.emit("show", {show: `${user.name} has joined`})
+    socket.user = user
+    io.sockets.emit("broadcast", {description: `${users += 1} online`})	  
+    io.sockets.emit("show", {show: `${user.name} has joined`})
   })
 
   socket.on(JOIN_ROOM, (user, roomName, callback) => {
@@ -78,9 +78,9 @@ return function(socket){
     socket.on(LOGOUT, ()=>{
       let room = chatRooms[roomName];
       room.users = removeUser(room.users, socket.user.name);
-  io.emit(USER_DISCONNECTED, connectedUsers);
-  io.sockets.emit("show", {show: `${socket.user.name} has left`})
-  io.sockets.emit("broadcast", {description: `${users -= 1} online`})
+      io.emit(USER_DISCONNECTED, connectedUsers);
+      io.sockets.emit("show", {show: `${socket.user.name} has left`})
+      io.sockets.emit("broadcast", {description: `${users -= 1} online`})
       console.log("Disconnect", connectedUsers);
     })
 
@@ -106,7 +106,7 @@ return (chatId, isTyping)=>{
 * @param sender {string} username of sender
 * @return function(chatId, message)
 */
-function sendMessageToChat(sender, io){
+function sendMessageToChat(sender, io,data){
 return (chatId, message)=>{
   io.emit(`${MESSAGE_RECIEVED}-${chatId}`, createMessage({message, sender}))
 }
