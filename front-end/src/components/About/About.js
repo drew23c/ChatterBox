@@ -18,10 +18,10 @@ const About = () => {
             <h1>Proudly Coded By</h1>
             {team.map( (el,i) =>
             <p>{el.name}
-                <a href={el.github}><GoMarkGithub /></a>
-                <a href={el.linkedin}><IoSocialIcon /></a>
+                <a href={el.github} target="_blank" ><GoMarkGithub /></a>
+                <a href={el.linkedin} target="_blank" ><IoSocialIcon /></a>
             </p>)}
-            <p>C4Q Access Code 4.2 Full Stack Web Development Fellows</p>
+            <p id="c4q">C4Q Access Code 4.2 Full Stack Web Development Fellows</p>
         </div>
     )
 }
