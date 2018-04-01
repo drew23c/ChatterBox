@@ -18,8 +18,6 @@ class App extends Component {
           <Link to="/main" className='icon'> Main </Link>
           {"  "}
           <Link to="/waiting" className='links'> Waiting </Link>
-          {"  "}
-          <Link to="/about-us" className='icon'> About </Link>
         </nav>
     <div className="mainbody">
     <Switch>
@@ -27,7 +25,6 @@ class App extends Component {
       <Route path="/main" component={Home} />
       <Route path="/chat" component={ChatPage} />
       <Route path="/waiting" component={Wait} />
-      <Route path="/about-us" component={About} />
     </Switch>
     </div>
 

@@ -1,3 +1,6 @@
+#about {
+    margin-top: 75px;
+}
 #about a {
     margin-left: 10px;
     color: #1b9aaa;
@@ -5,5 +8,9 @@
 }
 
 #about p {
-    margin-top: 3em;
+    margin: auto;
+}
+
+#c4q {
+    padding-top: 1em;
 }
