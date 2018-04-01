@@ -1,0 +1,17 @@
+#landing p {
+    margin: 3em;
+}
+
+#enter {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+#enter p {
+    background-color: #1b9aaa;
+    width: 200px;
+    padding: 1em;
+    margin: auto;
+    text-transform: uppercase;
+    font-weight: bold;
+}
