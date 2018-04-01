@@ -79,13 +79,16 @@ const createChatNameFromUsers = (users, excludedUser = "") => {
 *	@return a string represented in 24hr time i.e. '11:30', '19:30'
 */
 const getTime = (date)=>{
-	return `${date.getHours()}:${("0"+date.getMinutes()).slice(-2)}`
+	let time = new Date();
+	return `${time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}`
 }
 
+	
 module.exports = {
 	createMessage,
 	createChat,
 	createUser,
-	createChatNameFromUsers
+	createChatNameFromUsers,
+	getTime
 }
 
