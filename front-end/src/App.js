@@ -1,23 +1,35 @@
 import React, { Component } from 'react';
 import { Link, Switch, Route } from "react-router-dom";
-import './styling/homepg.css'
 import ChatPage from "./components/Chat/Chatpg";
 import Home from "./components/Home/Home";
 import Layout from './components/Layout'
 import Wait from './components/Waiting/Waitpg'
 import Landing from './components/Landing/Landing';
 import About from './components/About/About';
+import './index.css';
+import './styling/homepg.css'
 
 class App extends Component {
   render() {
     return (
       <div>
-           <nav className='navbar'>
-        <Link to="/" className='icon'> Home </Link>
-          {"  "}
-          <Link to="/main" className='icon'> Main </Link>
-          {"  "}
-          <Link to="/waiting" className='links'> Waiting </Link>
+          <nav className="navbar-default navbar-fixed-top navbarColor">
+            <div className="container-fluid text">
+             <img  className='navbar-header'alt='Brand' src="logo.gif" width="110" height="40" />
+              <ul className="nav navbar-nav">
+               <li className="nav-item nav-itemColor">
+                <Link style={{color:'white'}} to="/"> Home </Link>
+                </li>
+              
+              <li className="nav-item nav-itemColor">
+                <Link style={{color:'white'}} to="/main"> Main </Link>
+              </li>
+
+              <li className="nav-item nav-itemColor">
+                <Link style={{color:'white'}} to="/waiting"> Waiting </Link>
+              </li>
+           </ul> 
+         </div>
         </nav>
     <div className="mainbody">
     <Switch>

@@ -80,7 +80,7 @@ const createChatNameFromUsers = (users, excludedUser = "") => {
 */
 const getTime = (date)=>{
 	let time = new Date();
-	return `${time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}`
+	return  `${time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}`
 }
 
 	
