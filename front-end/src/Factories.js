@@ -8,12 +8,11 @@ const uuidv4 = require('uuid/v4')
 *	@param {object} 
 *		name {string}
 */
-const createUser = ({name = "", socketId = null, role = ['admin','user','guest'] } = {})=>(
+const createUser = ({name = "", socketId = null } = {})=>(
 	{
 		id:uuidv4(),
 		name,
-		socketId,
-		role: getRole(role)
+		socketId
 	}
 )
 
@@ -33,7 +32,7 @@ const createMessage = ({message = "", sender = ""} = { })=>(
 			id:uuidv4(),
 			time:getTime(new Date(Date.now())),
 			message,
-			sender	
+			sender
 		}
 
 	)
@@ -79,11 +78,8 @@ const createChatNameFromUsers = (users, excludedUser = "") => {
 *	@return a string represented in 24hr time i.e. '11:30', '19:30'
 */
 const getTime = (date)=>{
-	return `${date.getHours()}:${("0"+date.getMinutes()).slice(-2)}`
-}
-
-const getRole = (role) =>{
-	return role.filter(r => r === r)
+	let time = new Date();
+	return  `${time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}`
 }
 module.exports = {
 	createMessage,

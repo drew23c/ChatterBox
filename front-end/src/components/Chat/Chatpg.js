@@ -14,7 +14,7 @@ class ChatPage extends Component {
         return (
             <div>
             <Room showid={showid} />  
-            <Layout />
+            <Layout roomName={showid} />
             </div>
         )
     }

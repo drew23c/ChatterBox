@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../../styling/chatpg.css';
 
 export default class Messages extends Component {
 	constructor(props) {
@@ -19,8 +20,7 @@ export default class Messages extends Component {
 	componentDidUpdate(prevProps, prevState) {
 		this.scrollDown()
 	}
-	
-	render() {
+	render() {		
 		const { messages, user, typingUsers } = this.props
 		return (
 			<div ref='container'
@@ -37,6 +37,7 @@ export default class Messages extends Component {
 									<div className="data">
 										<div className="message">{mes.message}</div>
 										<div className="sender"><b>{mes.sender}</b></div>
+										<div className="spam">{mes.spam}</div>
 									</div>
 								</div>
 

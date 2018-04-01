@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SideBar from '../sidebar/SideBar'
 import { COMMUNITY_CHAT, MESSAGE_SENT, MESSAGE_RECIEVED, 
 				TYPING, PRIVATE_MESSAGE, USER_CONNECTED, USER_DISCONNECTED,
-				NEW_CHAT_USER } from '../../Events'
+				NEW_CHAT_USER, JOIN_ROOM } from '../../Events'
 import ChatHeading from './ChatHeading'
 import Messages from '../messages/Messages'
 import MessageInput from '../messages/MessageInput'
@@ -38,11 +38,18 @@ export default class ChatContainer extends Component {
 	}
 	
 	initSocket(socket){
-		socket.emit(COMMUNITY_CHAT, this.resetChat)
-		socket.on(PRIVATE_MESSAGE, this.addChat)
+    const {roomName, user} = this.props;
+		socket.emit(JOIN_ROOM, user, roomName, this.resetChat);
+		//socket.on(PRIVATE_MESSAGE, this.addChat)
+    /* Seems to be useless. Besides, the socket has long since
+     * connected with the server, if messages are being emitted back
+     * and forth. Which they must have been, because VERIFY_USER has
+     * necessarily been sent back and forth between the client and
+     * server.
 		socket.on('connect', ()=>{
 			socket.emit(COMMUNITY_CHAT, this.resetChat)
 		})
+    */
 		socket.on(USER_CONNECTED, (users)=>{
 			this.setState({ users: values(users) })
 		})
@@ -55,21 +62,24 @@ export default class ChatContainer extends Component {
 			socket.on("broadcast", data =>{
 				broadcast(data)
 			})
-		
-		const show = data =>{
-			let userShow = document.getElementById('userShow')
-			this.setState({
-				userShow: data.show
-			})
+
+//5 secs will show user logged in and logged out
+const show = data =>{
+	let userShow = document.getElementById('userShow')
+		this.setState({
+			userShow: data.show
+		})
 			setTimeout((data)=>{
 				this.setState({
 					userShow:" "
-				})
-			}, 5000)
-			}
-			socket.on("show", data =>{
+					})
+				}, 5000)
+		 }
+		socket.on("show", data =>{
 				show(data)
-			})
+		})
+
+
 		socket.on(USER_DISCONNECTED, (users)=>{
 			const removedUsers = differenceBy( this.state.users, values(users), 'id')
 			this.removeUsersFromChat(removedUsers)
@@ -124,13 +134,28 @@ export default class ChatContainer extends Component {
 		const { chats } = this.state
 
 		const newChats = reset ? [chat] : [...chats, chat]
-		this.setState({chats:newChats, activeChat:reset ? chat : this.state.activeChat})
+		this.setState({
+      chats:newChats,
+      activeChat: (reset ? chat : this.state.activeChat)
+    })
 
-		const messageEvent = `${MESSAGE_RECIEVED}-${chat.id}`
-		const typingEvent = `${TYPING}-${chat.id}`
+		//const messageEvent = `${MESSAGE_RECIEVED}-${chat.id}`
+		const messageEvent = `${MESSAGE_RECIEVED}`;
+		//const typingEvent = `${TYPING}-${chat.id}`
 
-		socket.on(typingEvent, this.updateTypingInChat(chat.id))
+		//socket.on(typingEvent, this.updateTypingInChat(chat.id))
+    /* This is where messages get added to the chat, when a message
+     * comes back from the server)
+     */
 		socket.on(messageEvent, this.addMessageToChat(chat.id))
+		const broadcast = data =>{
+			this.setState({
+				userSpam: data.spam
+				})
+			}
+			socket.on("broadcast", data =>{
+				broadcast(data)
+			})
 	}
 
 	/*
@@ -141,9 +166,10 @@ export default class ChatContainer extends Component {
 	*/
 	addMessageToChat = (chatId)=>{
 		return message => {
+      console.log("Message:", message);
 			const { chats } = this.state
 			let newChats = chats.map((chat)=>{
-				if(chat.id === chatId)
+				//if(chat.id === chatId)
 					chat.messages.push(message)
 				return chat
 			})
@@ -201,8 +227,8 @@ export default class ChatContainer extends Component {
 		this.setState({activeChat})
 	}
 	render() {
-		const { user, logout } = this.props
-		const { chats, activeChat, users, usersOnline, userShow } = this.state
+		const { user, logout, userSpam } = this.props
+		const { chats, activeChat, users, usersOnline,userShow } = this.state
 		return (
 			<div className='movement2'>
 			<div className="container">
@@ -219,11 +245,12 @@ export default class ChatContainer extends Component {
 						activeChat !== null ? (
 
 							<div className="chat-room">
-								<ChatHeading name={activeChat.name} logout={logout} usersOnline={usersOnline} show={userShow} />
+								<ChatHeading name={activeChat.name} placeholder={logout} logout={logout} usersOnline={usersOnline} show={userShow} />
 								<Messages 
 									messages={activeChat.messages}
 									user={user}
 									typingUsers={activeChat.typingUsers}
+									spam={userSpam}
 									/>
 								<MessageInput 
 									sendMessage={

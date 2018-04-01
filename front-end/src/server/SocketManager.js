@@ -1,113 +1,92 @@
-const io = require('./index.js').io
-
 const { VERIFY_USER, USER_CONNECTED, USER_DISCONNECTED, 
 		LOGOUT, COMMUNITY_CHAT, MESSAGE_RECIEVED, MESSAGE_SENT,
-		TYPING, PRIVATE_MESSAGE, NEW_CHAT_USER } = require('../Events')
+		TYPING, PRIVATE_MESSAGE, NEW_CHAT_USER,
+    JOIN_ROOM} = require('../Events')
 
 const { createUser, createMessage, createChat } = require('../Factories')
 
 let connectedUsers = { }
-
-let communityChat = createChat({ isCommunity:true })
 let users = 0;
-module.exports = function(socket){
-					
-	// console.log('\x1bc'); //clears console
-	console.log("Socket Id:" + socket.id);
 
-	let sendMessageToChatFromUser;
+//let communityChat = createChat({ isCommunity:true })
+let chatRooms = {};
 
-	let sendTypingFromUser;
+module.exports = function(io) {
+  return function(socket){
 
-	//Verify Username
-	socket.on(VERIFY_USER, (nickname, callback)=>{
-		if(isUser(connectedUsers, nickname)){
-			callback({ isUser:true, user:null })
-		}else{
-			callback({ isUser:false, user:createUser({name:nickname, socketId:socket.id, socketId:socket.id})})
-		}
-	})
+    // console.log('\x1bc'); //clears console
+    console.log("Socket Id:" + socket.id);
 
-	//User Connects with username
-	socket.on(USER_CONNECTED, (user)=>{
-		user.socketId = socket.id
-		connectedUsers = addUser(connectedUsers, user)
-		socket.user = user
-		io.sockets.emit("broadcast", {description: `${users += 1} online`})
-		console.log(user.name)
-		
-		sendMessageToChatFromUser = sendMessageToChat(user.name)
-		sendTypingFromUser = sendTypingToChat(user.name)
+    /* Checks if a user with that nickname exists in the specified
+     * room.
+     */
+    socket.on(VERIFY_USER, (nickname, roomName, callback)=>{
+      console.log(`Verifying user for nickname: ${nickname} in room ${roomName}`);
+      let room = chatRooms[roomName];
+      console.log("Room:", room);
 
-		io.emit(USER_CONNECTED, connectedUsers)
-		console.log(connectedUsers);
-		io.sockets.emit("show", {show: `${user.name} has joined`})
-	})
-	
-	//User disconnects
-	socket.on('disconnect', ()=>{
-		if("user" in socket){
-			connectedUsers = removeUser(connectedUsers, socket.user.name)
+      if (!room || !isUser(room.users, nickname)) {
+        console.log("Room did not exist.");
+        callback({
+          isUser:false,
+          user:createUser({name:nickname, socketId:socket.id})})
+      }else{
+        console.log("Room existed.");
+        callback({ isUser:true, user:null })
+      }
+    })
 
-			io.emit(USER_DISCONNECTED, connectedUsers)
-			console.log("Disconnect", connectedUsers);
-			io.sockets.emit("broadcast", {description: `${users -= 1} online`})
-			if(users < 0){
-				io.sockets.emit("broadcast", {description: `${users = 0} online`})
-			}
-			io.sockets.emit("show", {show: `${socket.user.name} has left`})
+    //User Connects with username
+    socket.on(USER_CONNECTED, (user)=>{
+      user.socketId = socket.id
+	  socket.user = user
+	  io.sockets.emit("broadcast", {description: `${users += 1} online`})
+	  io.sockets.emit("show", {show: `${user.name} has joined`})
+    })
 
-		}
-	})
-
-
-	//User logsout
-	socket.on(LOGOUT, ()=>{
-		connectedUsers = removeUser(connectedUsers, socket.user.name)
-		io.emit(USER_DISCONNECTED, connectedUsers)
-		console.log("Disconnect", connectedUsers);
-		io.sockets.emit("broadcast", {description: `${users -= 1} online`})
-		if(users < 0){
-			io.sockets.emit("broadcast", {description: `${users = 0} online`})
-		}
+    socket.on(JOIN_ROOM, (user, roomName, callback) => {
+      console.log("User is joining room:", user, roomName);
+      let room = chatRooms[roomName];
+      if (!room) {
+        room = createChat({name:roomName, isCommunity:true});
+        chatRooms[roomName] = room;
+      }
+      room.users = addUser(room.users, user);
+      socket.join(roomName);
+      socket.on(MESSAGE_SENT, ({message}) => {
+        io.to(roomName)
+          .emit(MESSAGE_RECIEVED, 
+                createMessage({message, sender:user.name}));
+      });
+      /* Disconnect and logout don't strictly have to have their event
+       * listeners set from within JOIN_EVENT's event listener.
+       * However, I needed access to the room information somehow.
+       *
+       * Whatever was did here was probably a poor choice.
+       */
+      //User disconnects
+      socket.on('disconnect', ()=>{
+        if("user" in socket){
+          let room = chatRooms[roomName];
+          room.users = removeUser(room.users, user.name);
+		  io.emit(USER_DISCONNECTED, room.users);
+		  io.sockets.emit("broadcast", {description: `${users -= 1} online`})
+		  io.sockets.emit("show", {show: `${socket.user.name} has left`})
+        }
+      });
+      //User logsout
+      socket.on(LOGOUT, ()=>{
+        let room = chatRooms[roomName];
+        room.users = removeUser(room.users, socket.user.name);
+		io.emit(USER_DISCONNECTED, connectedUsers);
 		io.sockets.emit("show", {show: `${socket.user.name} has left`})
+		io.sockets.emit("broadcast", {description: `${users -= 1} online`})
+        console.log("Disconnect", connectedUsers);
+      })
 
-	})
-
-	//Get Community Chat
-	socket.on(COMMUNITY_CHAT, (callback)=>{
-		callback(communityChat)
-	})
-
-	socket.on(MESSAGE_SENT, ({chatId, message})=>{
-		sendMessageToChatFromUser(chatId, message)
-	})
-
-	socket.on(TYPING, ({chatId, isTyping})=>{
-		sendTypingFromUser(chatId, isTyping)
-	})
-
-	socket.on(PRIVATE_MESSAGE, ({reciever, sender, activeChat})=>{
-		if(reciever in connectedUsers){
-			const recieverSocket = connectedUsers[reciever].socketId
-			if(activeChat === null || activeChat.id === communityChat.id){
-				const newChat = createChat({ name:`${reciever}&${sender}`, users:[reciever, sender] })
-				socket.to(recieverSocket).emit(PRIVATE_MESSAGE, newChat)
-				socket.emit(PRIVATE_MESSAGE, newChat)
-			}else{
-				if(!(reciever in activeChat.users)){
-					activeChat.users
-										.filter( user => user in connectedUsers)
-										.map( user => connectedUsers[user] )
-										.map( user => {
-												socket.to(user.socketId).emit(NEW_CHAT_USER, { chatId: activeChat.id, newUser: reciever })
-										} )
-										socket.emit(NEW_CHAT_USER, { chatId: activeChat.id, newUser: reciever } )
-				}
-				socket.to(recieverSocket).emit(PRIVATE_MESSAGE, activeChat)
-			}
-		}
-	})
+      callback(room);
+    });
+  }
 }
 /*
 * Returns a function that will take a chat id and a boolean isTyping
@@ -115,7 +94,7 @@ module.exports = function(socket){
 * @param sender {string} username of sender
 * @return function(chatId, message)
 */
-function sendTypingToChat(user){
+function sendTypingToChat(user, io){
 	return (chatId, isTyping)=>{
 		io.emit(`${TYPING}-${chatId}`, {user, isTyping})
 	}
@@ -127,7 +106,7 @@ function sendTypingToChat(user){
 * @param sender {string} username of sender
 * @return function(chatId, message)
 */
-function sendMessageToChat(sender){
+function sendMessageToChat(sender, io, data){
 	return (chatId, message)=>{
 		io.emit(`${MESSAGE_RECIEVED}-${chatId}`, createMessage({message, sender}))
 	}
