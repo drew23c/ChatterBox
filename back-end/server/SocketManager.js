@@ -5,7 +5,7 @@ const { VERIFY_USER, USER_CONNECTED, USER_DISCONNECTED,
 
 const { createUser, createMessage, createChat } = require('../Factories')
 
-let connectedUsers = { }
+let connectedUsers = {}
 let users = 0;
 
 //let communityChat = createChat({ isCommunity:true })
@@ -40,8 +40,8 @@ return function(socket){
   socket.on(USER_CONNECTED, (user)=>{
     user.socketId = socket.id
     socket.user = user
-    io.sockets.emit("broadcast", {description: `${users += 1} online`})	  
-    io.sockets.emit("show", {show: `${user.name} has joined`})
+    // io.sockets.emit("broadcast", {description: `${users += 1} online`})	  
+    // io.sockets.emit("show", {show: `${user.name} has joined`})
   })
 
   socket.on(JOIN_ROOM, (user, roomName, callback) => {
@@ -53,6 +53,8 @@ return function(socket){
     }
     room.users = addUser(room.users, user);
     socket.join(roomName);
+    io.to(roomName).emit("broadcast", {description: `${Object.keys(room.users).length} online`}) 
+    io.to(roomName).emit("show", {show: `${socket.user.name} has entered`})   
     socket.on(MESSAGE_SENT, ({message}) => {
       io.to(roomName)
         .emit(MESSAGE_RECIEVED, 
@@ -70,8 +72,8 @@ return function(socket){
         let room = chatRooms[roomName];
         room.users = removeUser(room.users, user.name);
     io.emit(USER_DISCONNECTED, room.users);
-    io.sockets.emit("broadcast", {description: `${users -= 1} online`})
-    io.sockets.emit("show", {show: `${socket.user.name} has left`})
+    io.to(roomName).emit("broadcast", {description: `${Object.keys(room.users).length} online`})
+    io.to(roomName).emit("show", {show: `${socket.user.name} has left`})
       }
     });
     //User logsout
@@ -79,8 +81,9 @@ return function(socket){
       let room = chatRooms[roomName];
       room.users = removeUser(room.users, socket.user.name);
       io.emit(USER_DISCONNECTED, connectedUsers);
-      io.sockets.emit("show", {show: `${socket.user.name} has left`})
-      io.sockets.emit("broadcast", {description: `${users -= 1} online`})
+      io.to(roomName).emit("broadcast", {description: `${Object.keys(room.users).length} online`})
+      io.to(roomName).emit("show", {show: `${socket.user.name} has left`})   
+      
       console.log("Disconnect", connectedUsers);
     })
 
