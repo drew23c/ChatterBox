@@ -227,7 +227,7 @@ export const TvGuide = ({hour, arr, dateInput, moreTime, lessTime, handleDateInp
                      <td>{el.airtime.match(hour + ":00") ? schedHour1 :
                             schedHour1.replace(" ", el.airtime.slice(2).concat(" ")) }</td>
                         
-                <td><Link to={`/chat/${el.show.name}/${el.show.id}`}>{el.show.name}</Link></td>
+                <td>{ dateInput ? el.show.name : <Link to={`/chat/${el.show.name}/${el.show.id}`}>{el.show.name}</Link>}</td>
                 <td>{el.show.network.name}</td>
                         {/* <td>{el.runtime}</td> */}
                     </tr>)}

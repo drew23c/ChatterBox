@@ -10,13 +10,16 @@ class Popular extends Component {
         }
     }
 
-    // Get shows with a rating of 8 out of 10.
+    // Get shows with a rating of 7 out of 10 and that are currently on the air or will air today.
+    // Filters out shows that have already aired.
     // Uses the /schedule endpoint and will change daily.
     handlePopular = () => {
         axios.get('http://api.tvmaze.com/schedule')
         .then( res => {
+            let hour = new Date().getHours();
+            let hourStr = hour < 10 ? hour.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) : hour.toString();
             let pop = res.data.filter( el => {
-                if (el.show.rating.average > 8) {
+                if (el.show.rating.average > 7 && (hourStr <= el.airtime.slice(0,2)) ) {
                     return el;
                 }
             })

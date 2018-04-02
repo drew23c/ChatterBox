@@ -56,17 +56,6 @@ export class Room extends Component {
     }
 
     renderWaitPage = () => {
-        //const {airdate, airtime, epInfo, image, showInfo, summary, network} = this.state;
-        // return (
-        //     <Wait 
-        //     airdate={airdate}
-        //     airtime={airtime} 
-        //     epInfo={epInfo} 
-        //     image={image}
-        //     showInfo={showInfo} 
-        //     summary={summary}
-        //     network={network}/>
-        // )
         const {epInfo, image, showInfo, summary, network, airdate, airtime} = this.state;
         const deadline = (airdate).concat(" " + airtime);
         var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -84,7 +73,6 @@ export class Room extends Component {
                 <div className="Wait-sum">
                 </div>
                 <div className="Wait-Bottom">
-                    {/* <div className="App-date">{new Date(deadline).toLocaleDateString('en-US', options)}</div> */}
                     Time Left: <Clock className='Countdown' deadline={deadline} name={showInfo.name} showid={showInfo.id}/>
                 </div>
             </div>
@@ -95,9 +83,9 @@ export class Room extends Component {
         const {airdate, airtime} = this.state;
         const deadline = (airdate).concat(" " + airtime);
         var options = {hour12: false}
-        //Date.parse(deadline) - Date.parse(new Date()) < 0
-        if ( (new Date(airdate).toUTCString().slice(0, 16) === new Date().toUTCString().slice(0, 16)) 
-            && airtime === new Date("2018-04-01 19:00").toLocaleTimeString('en-US', options).slice(0, 5) ) {
+        const hour = new Date().getHours();
+        const hourStr = hour < 10 ? hour.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) : hour.toString();
+        if ( hourStr === airtime.slice(0,2) ) {
             return <this.renderChatroom />
         } else {
             return <this.renderWaitPage />
