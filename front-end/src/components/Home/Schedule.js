@@ -20,13 +20,14 @@ export class Schedule extends Component {
     // Handles date input by user. Gets US TV schedule for day specified.
     handleDateInput = () => {
         const {userInput} = this.state;
+        const userDate = document.getElementById('date').value;
         console.log('HI BEN')
-        axios.get(`http://api.tvmaze.com/schedule?date=${this.state.userInput}`)
+        axios.get(`http://api.tvmaze.com/schedule?date=${userDate}`)
         .then( res => {
             console.log("res:", res);
             this.setState({
                 arr: res.data,
-                dateInput: userInput
+                dateInput: userDate
             })
         })
         .catch(error => console.log(error))
@@ -53,8 +54,8 @@ export class Schedule extends Component {
 
     // Decreases schedule time by 1 hour. Stops at mignight.
     handleLessTime = () => {
-        const {hour} = this.state;
-        if (hour === 0) {
+        const {hour, userInput, dateInput} = this.state;
+        if (hour === new Date().getHours() && !dateInput) {
             this.setState({
                 hour: hour
             })
@@ -185,9 +186,9 @@ export const TvGuide = ({hour, arr, dateInput, moreTime, lessTime, handleDateInp
         <div>
             <div>
                 <input type="date" 
-                    id="date" 
-                    value={userInput} 
-                    onChange={handleUserInput} 
+                    id="date"  
+                    value={userInput}
+                    onChange={handleUserInput}
                     placeholder="YYYY-MM-DD"/>
                 <button onClick={handleDateInput} >Get Schedule</button>
                 <button onClick={handleReset} id="reset">Reset</button>
@@ -208,7 +209,7 @@ export const TvGuide = ({hour, arr, dateInput, moreTime, lessTime, handleDateInp
                         
                         {/* Buttons are diabled when user reaches 0. */}
 
-                        <FaAngleDoubleLeft  className={hour === 0 ? "arrow" : ""} size={30} style={{float:'left', padding: '10px'}} disabled={hour === 0} onClick={lessTime}/>
+                        <FaAngleDoubleLeft  className={hour === new Date().getHours() && !dateInput ? "arrow" : ""} size={30} style={{float:'left', padding: '10px'}} disabled={hour === new Date().getHours() && !dateInput} onClick={lessTime}/>
                      
                         </td>
                     </tr>
@@ -226,7 +227,7 @@ export const TvGuide = ({hour, arr, dateInput, moreTime, lessTime, handleDateInp
                      <td>{el.airtime.match(hour + ":00") ? schedHour1 :
                             schedHour1.replace(" ", el.airtime.slice(2).concat(" ")) }</td>
                         
-                <td><Link to={`/chat/${el.show.name}/${el.show.id}`}>{el.show.name}</Link></td>
+                <td>{ dateInput ? el.show.name : <Link to={`/chat/${el.show.name}/${el.show.id}`}>{el.show.name}</Link>}</td>
                 <td>{el.show.network.name}</td>
                         {/* <td>{el.runtime}</td> */}
                     </tr>)}

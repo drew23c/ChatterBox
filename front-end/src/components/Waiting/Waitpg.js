@@ -7,7 +7,12 @@ class Wait extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            deadline: 'Mar 30, 2018 20:00:00',
+            deadline: (this.props.airdate).concat(" " + this.props.airtime),
+            epInfo: this.props.epInfo,
+            image: this.props.image,
+            showInfo: this.props.showInfo,
+            summary: this.props.summary,
+            network: this.props.network
         };
     }
 
@@ -15,6 +20,7 @@ class Wait extends Component {
     //Add info about the show
     //Choose font for Summary  
     render() {
+        const {deadline, epInfo, image, showInfo, summary, network} = this.state;
         return (
             <Grid className='Wait-Page'>
                 <Row className='Wait-Bottom'>
