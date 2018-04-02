@@ -18,6 +18,7 @@ export default function({name, numberOfUsers, usersOnline, logout, user, show}) 
 			<div className="user-show" id="userShow">{show}</div>
 			<div>
 			<div onClick={()=>{logout()}} title="Logout" className="logout">
+			LOGOUT
 			<MdEject/>	
 		</div>
 			</div>

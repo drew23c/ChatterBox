@@ -1,3 +1,5 @@
+@import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js");
+
 html {
     height: 100%;
 }
@@ -7,6 +9,7 @@ body {
     text-align: center;
     background-color:#F5F1E3;
     height: 100%;
+    color:black;
 }
 
 table {
@@ -50,37 +53,32 @@ a {
     width: 300px;
 }
 
-.navbar {
-    display:flex;
-    justify-content: center;
-    top:0;
-    right: 0;
-    left: 0;
-    position: fixed;  
-    overflow: hidden;
-    background-color:white;
-    font-family: Arial;
-    z-index: 5;
-    color:#1B9AAA;
-}
- 
-/* Links inside the navbar */
-.navbar a {
-    float: left;
-    text-transform: uppercase;
-    font-size: 30px;
-    text-align: center;
-    text-decoration: none;
-    padding-right: 150px;
-    padding-left: 150px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
 
-/* Add a red background color to navbar links on hover */
-.navbar a:hover{
-  color:#1B9AAA;
-}
+.navbarColor {
+    background-color: #1b99aa;
+    box-shadow: 10px 2px 8px 0px, #333;
+    color:white;
+    font-size:20px;
+  }
+  
+  .text{
+    color:white;
+  }
+  
+  .nav-itemColor{
+    color:white;
+    text-transform: uppercase;
+  }
+  
+  .nav-itemColor:hover{
+    background-color:#DDDBCB;
+    color:white;
+  }
+  .h1 {
+    text-align: center;
+  }
+  
+  
 
 .footer {
     position: fixed;
@@ -95,23 +93,6 @@ a {
     text-align: right;  
 }
 
-.flex-containerHome {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-around;
-    align-items: flex-start;
-    
-}
-
-.flex-schedule {
-    border-right: 4px solid black;
-    padding-right: 30px;
-}
-
-.flex-popular{
-    
- }
 
 .mainbody {
     margin-top: 100px;
@@ -144,4 +125,8 @@ a {
 
 #popular a {
     padding: none;
+}
+
+.colorFONT{
+    color:black;
 }
