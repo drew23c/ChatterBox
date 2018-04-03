@@ -5,7 +5,6 @@
 
 .Summary{
  padding-top:30px;
- padding-left: 80px;
  padding-right: 50px;   
  padding-bottom: 30px;
  font-size: 25px;
@@ -17,11 +16,16 @@
  font-weight: bold;
 }
 
+.sum{
+  overflow-y: scroll;
+  height: 300px;
+  width: 500px;
+}
 .blurb{
  margin:40px;
  width:375px;
  text-align: left;
- 
+
 }
 
 
@@ -39,12 +43,12 @@
  /* border-bottom:1px solid black; */
  box-shadow: 0 6px 7px -6px #222;
  color: black;
- width:100vw;  
 }
 
 .timer {
  font-size: 100px;
  color:black;
+ width: 100vw;
  text-align: center;
 }
 
@@ -52,6 +56,7 @@
  background-color:#1B9AAA;
  box-shadow: 2px 4px 3px rgba(0,0,0,0.3);
  color:#050505;
+ font-size: 150px;
  padding: 0 5px;
  border-radius: 5px;
  width: 60px;
