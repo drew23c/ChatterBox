@@ -49,14 +49,11 @@ export class Room extends Component {
                 <Grid className='Chat-pg'>
                  <Row>
                     <Col xs={8} md={6} lg={6}>
-                <img className='Info-img' src={image.original} />
+                <Image className='Info-img' src={image.original} />
                 <h3>Show:{" "}{showInfo.name}</h3>
                 <h3>Episode:{" "}{epInfo.name}</h3>
                 <p id="sum">{summary ? summary.replace(/(<p[^>]+?>|<p>|<\/p>)/img, "") : "No summary avilable"}</p>
                 <Link to="/">Back</Link>
-                </Col>
-                <Col xs={10} md={6} lg={6}>
-                {/* <Layout roomName={showid} /> */}
                 </Col>
               </Row>
           </Grid>
@@ -70,20 +67,21 @@ export class Room extends Component {
         var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         return (
             <div className='Wait-Page' >
-                <img className='Wait-img' src={image.original} />
+                <div className="Wait-Bottom">
+                    Time Left: <Clock className='Countdown' deadline={deadline} name={showInfo.name} showid={showInfo.id} />
+                </div>
+                <Image rounded responsive className='Info-img' src={image.original} />
                 <div className="Summary">
                     <div className="blurb">
                         <h1 className="Wait-title">Show:{" "}{showInfo.name}</h1>
                         <p> Season:{" "}{epInfo.season} Episode:{" "}{epInfo.number} </p>
                         <p> Network:{" "}{network.name} </p>
-                        <p> Summary:{" "}{summary ? summary.replace(/(<p[^>]+?>|<p>|<\/p>)/img, "") : "No summary avilable"}</p>
+                        <p className='sum'> Summary:{" "}{summary ? summary.replace(/(<p[^>]+?>|<p>|<\/p>)/img, "") : "No summary avilable"}</p>
                     </div>
                 </div>
                 <div className="Wait-sum">
                 </div>
-                <div className="Wait-Bottom">
-                    Time Left: <Clock className='Countdown' deadline={deadline} name={showInfo.name} showid={showInfo.id}/>
-                </div>
+
             </div>
         )
     }
