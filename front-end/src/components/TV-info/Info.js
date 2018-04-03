@@ -4,6 +4,7 @@ import axios from 'axios';
 import '../../styling/info.css'
 import Clock from '../Waiting/Countdown';
 import Layout from '../Layout'
+import { Grid, Row, Col, Image } from 'react-bootstrap';
 
 export class Room extends Component {
     constructor(props) {
@@ -44,13 +45,21 @@ export class Room extends Component {
     renderChatroom = () => {
         const {showInfo, image, epInfo, summary, showid} = this.state;
         return (
-            <div className='flex-container'>
+            <div>
+                <Grid className='Chat-pg'>
+                 <Row>
+                    <Col xs={8} md={6} lg={6}>
                 <img className='Info-img' src={image.original} />
                 <h3>Show:{" "}{showInfo.name}</h3>
                 <h3>Episode:{" "}{epInfo.name}</h3>
                 <p id="sum">{summary ? summary.replace(/(<p[^>]+?>|<p>|<\/p>)/img, "") : "No summary avilable"}</p>
                 <Link to="/">Back</Link>
-                <Layout roomName={showid} />
+                </Col>
+                <Col xs={10} md={6} lg={6}>
+                {/* <Layout roomName={showid} /> */}
+                </Col>
+              </Row>
+          </Grid>
             </div>
         )
     }

@@ -7,6 +7,7 @@ import ChatHeading from './ChatHeading'
 import Messages from '../messages/Messages'
 import MessageInput from '../messages/MessageInput'
 import { values, difference, differenceBy } from 'lodash'
+import '../../styling/chatstyles.css';
 
 export default class ChatContainer extends Component {
 	constructor(props) {
@@ -20,10 +21,10 @@ export default class ChatContainer extends Component {
 	}
 
 // broadcast online users
-broadcast = data =>{
-	console.log(data)
-	this.setState({users: data.description})
-}
+// broadcast = data =>{
+// 	console.log(data)
+// 	this.setState({users: data.description})
+// }
 	componentDidMount() {
 		const { socket } = this.props
 		this.initSocket(socket)
@@ -73,7 +74,7 @@ const show = data =>{
 				this.setState({
 					userShow:" "
 					})
-				}, 5000)
+				}, 10000)
 		 }
 		socket.on("show", data =>{
 				show(data)
@@ -231,8 +232,8 @@ const show = data =>{
 		const { user, logout,userSpam } = this.props
 		const { chats, activeChat, users, usersOnline,userShow } = this.state
 		return (
-			<div className='movement2'>
-			<div className="container">
+			<div>
+			<div>
 				{/* <SideBar
 					chats={chats}
 					user={user}

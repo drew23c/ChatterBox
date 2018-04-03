@@ -1,68 +1,12 @@
-.Info-img{
-    width:50vw;
-    margin-right:900px;
-    z-index: -2;
+.Blurb{
+     text-align: left;
+     font-size: 20px;
+      width: 30vw;
+} 
+/*This is just the summary of the TV Info */
+
+#sum{
+    overflow-y:scroll;
+    height:250px;
+    width:400px;
 }
-.blurb{
-    display: flex;
-    flex-direction: row;    
-    border:2px solid black;
-    margin-top:190px;
-    margin-left:700px;
-    width:50vw;
-    z-index: 2;
-} */
-
-.Info-img{
-    width:350px;
-    margin-right:900px;
-    z-index: -2;
-}
-
-.flex-container {
-    display: flex;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-flex-wrap: nowrap;
-    -ms-flex-wrap: nowrap;
-    flex-wrap: nowrap;
-    -webkit-justify-content: flex-start;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
-    -webkit-align-content: stretch;
-    -ms-flex-line-pack: stretch;
-    align-content: stretch;
-    -webkit-align-items: flex-start;
-    -ms-flex-align: start;
-    align-items: flex-start;
-    width:450px;
-    /* position: absolute; */
-    }
-
-.hey {
-    -webkit-order: 0;
-    -ms-flex-order: 0;
-    order: 0;
-    -webkit-flex: 0 1 auto;
-    -ms-flex: 0 1 auto;
-    flex: 0 1 auto;
-    -webkit-align-self: auto;
-    -ms-flex-item-align: auto;
-    align-self: auto;
-    margin-top:-250px;
-    border:2px solid black;
-    background:white;
-    }
-
-.flex-item:nth-child(2) {
-    -webkit-order: 0;
-    -ms-flex-order: 0;
-    order: 0;
-    -webkit-flex: 0 1 auto;
-    -ms-flex: 0 1 auto;
-    flex: 0 1 auto;
-    -webkit-align-self: auto;
-    -ms-flex-item-align: auto;
-    align-self: auto;
-    }
