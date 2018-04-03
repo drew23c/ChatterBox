@@ -4,7 +4,7 @@ import {Room} from '../TV-info/Info';
 import '../../styling/chatpg.css';
 import Layout from '../Layout'
 
-import { Grid, Row, Col, Image } from 'react-bootstrap';
+import { Grid, Row, Col } from 'react-bootstrap';
 
 class ChatPage extends Component {
     constructor() {
