@@ -22,7 +22,7 @@ class Wait extends Component {
     render() {
         const {deadline, epInfo, image, showInfo, summary, network} = this.state;
         return (
-            <Grid className='Wait-Page'>
+            <Grid className='flex-container'>
                 <Row className='Wait-Bottom'>
                    <Col md={12}>
                      <h1>{this.state.deadline}</h1>
