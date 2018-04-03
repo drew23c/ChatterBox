@@ -1,12 +1,15 @@
 .Blurb{
      text-align: left;
      font-size: 20px;
-      width: 30vw;
 } 
 /*This is just the summary of the TV Info */
 
 #sum{
-    overflow-y:scroll;
-    height:250px;
     width:400px;
+}
+
+.Info-img{
+    padding-top:20px;
+    height: 600px;
+    position: relative;
 }
