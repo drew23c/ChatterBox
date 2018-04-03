@@ -23,9 +23,9 @@ export default class LoginForm extends Component {
 
 	handleSubmit = (e)=>{
 		e.preventDefault()
-		const { socket, roomName } = this.props;
-		const { nickname } = this.state;
-		socket.emit(VERIFY_USER, nickname, roomName, this.setUser);
+		const { socket, roomName } = this.props
+		const { nickname } = this.state
+		socket.emit(VERIFY_USER, nickname, roomName, this.setUser)
 	}
 
 	handleChange = (e)=>{	
@@ -54,7 +54,7 @@ export default class LoginForm extends Component {
 						id="nickname"
 						value={nickname}
 						onChange={this.handleChange}
-						placeholder={'Enter Username'}
+						placeholder={'type username'}
 						/>
 						<select onChange={this.handleRole}>
 							<option value=""></option>
@@ -67,7 +67,6 @@ export default class LoginForm extends Component {
 				</form>
 			</div>
 			</div>
-			
 		);
 	}
 }
