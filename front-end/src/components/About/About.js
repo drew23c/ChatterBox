@@ -17,7 +17,7 @@ const About = () => {
         <div id="about">
             <h1>Proudly Coded By</h1>
             {team.map( (el,i) =>
-            <p>{el.name}
+            <p key={i}>{el.name}
                 <a href={el.github} target="_blank" ><GoMarkGithub /></a>
                 <a href={el.linkedin} target="_blank" ><IoSocialIcon /></a>
             </p>)}
