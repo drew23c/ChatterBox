@@ -11,10 +11,6 @@ class Clock extends Component {
     }
 
     componentWillMount() {
-        this.getTimeUntil(this.props.deadline);
-    }
-
-    componentDidMount() {
         setInterval(() => this.getTimeUntil(this.props.deadline), 1000);
     }
 
@@ -41,6 +37,7 @@ class Clock extends Component {
     render() {
         return (
             <div className='timer'>
+                
                 <div className="hour">
                     <span class="number">{this.leading0(this.state.hours)}</span>:
                     <span class="number">{this.leading0(this.state.minutes)}</span>:
