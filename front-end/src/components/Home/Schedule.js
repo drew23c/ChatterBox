@@ -204,11 +204,15 @@ export const TvGuide = ({hour, arr, dateInput, moreTime, lessTime, handleDateInp
                         On Air:{" "}{schedHour1}{" - "}{schedHour2} <br />
                           {/* Buttons are diabled when user reaches midnight. */}
 
-                        <FaAngleDoubleRight  className={hour === 23 ? "arrow" : ""} size={80}  style={{float:'right', padding: '10px'}} disabled={hour === 23} onClick={moreTime}/>
+
+                        <FaAngleDoubleRight  className={hour === 23 ? "arrow" : ""} size={80}  
+                            style={{float:'right', padding: '10px'}} disabled={hour === 23} onClick={moreTime}/>
                         
                         {/* Buttons are diabled when user reaches 0. */}
 
-                        <FaAngleDoubleLeft  className={hour === new Date().getHours() && !dateInput ? "arrow" : ""} size={80} style={{float:'left', padding: '10px'}} disabled={hour === new Date().getHours() && !dateInput} onClick={lessTime}/>
+                        <FaAngleDoubleLeft  className={ (hour === new Date().getHours() && !dateInput) || (hour === 0)  ? "arrow" : ""} 
+                            size={80} style={{float:'left', padding: '10px'}} disabled={ (hour === new Date().getHours() && !dateInput) || (hour === 0) } 
+                            onClick={lessTime}/>
                      
                         </td>
                     </tr>

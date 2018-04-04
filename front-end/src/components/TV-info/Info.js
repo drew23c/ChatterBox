@@ -64,8 +64,10 @@ export class Room extends Component {
     renderWaitPage = () => {
         const {epInfo, image, showInfo, summary, network, airdate, airtime} = this.state;
         const deadline = (airdate).concat(" " + airtime);
-        console.log("Deadline '"+ deadline +"'")
+
         var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const summ= document.createElement("p");
+        summ.innerHTML = summary;
         return (
             <div className='Wait-Page' >
                 <div className="Wait-Bottom">
@@ -88,8 +90,8 @@ export class Room extends Component {
     }
 
     render() {
-        const {airdate, airtime} = this.state;
-        var options = {hour12: false}
+
+        const { airtime} = this.state;
         const hour = new Date().getHours();
         const hourStr = hour < 10 ? hour.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) : hour.toString();
         if ( hourStr === airtime.slice(0,2) ) {
