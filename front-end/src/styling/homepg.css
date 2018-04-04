@@ -20,6 +20,10 @@ table, td, th {
     border-collapse: collapse;
 }
 
+.schedule-table{
+    overflow-y:auto;
+    height: 80vh;
+}
 td, th {
     width: 250px;
     height: 50px;

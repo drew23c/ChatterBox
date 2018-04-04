@@ -182,7 +182,7 @@ export const TvGuide = ({hour, arr, dateInput, moreTime, lessTime, handleDateInp
     })
 
     return (
-        <div>
+        <div className='schedule-table'>
             <div>
                 <input type="date" 
                     id="date"  
@@ -197,20 +197,21 @@ export const TvGuide = ({hour, arr, dateInput, moreTime, lessTime, handleDateInp
         
             </div>
             
-            <table>
+            <table className='schedule-table'>
                 <thead>
                     <tr>
                         <td id="title" colSpan="4">Schedule for:{" "}{date} <br /> 
                         On Air:{" "}{schedHour1}{" - "}{schedHour2} <br />
                           {/* Buttons are diabled when user reaches midnight. */}
 
-                        <FaAngleDoubleRight  className={hour === 23 ? "arrow" : ""} size={30}  
+
+                        <FaAngleDoubleRight  className={hour === 23 ? "arrow" : ""} size={80}  
                             style={{float:'right', padding: '10px'}} disabled={hour === 23} onClick={moreTime}/>
                         
                         {/* Buttons are diabled when user reaches 0. */}
 
                         <FaAngleDoubleLeft  className={ (hour === new Date().getHours() && !dateInput) || (hour === 0)  ? "arrow" : ""} 
-                            size={30} style={{float:'left', padding: '10px'}} disabled={ (hour === new Date().getHours() && !dateInput) || (hour === 0) } 
+                            size={80} style={{float:'left', padding: '10px'}} disabled={ (hour === new Date().getHours() && !dateInput) || (hour === 0) } 
                             onClick={lessTime}/>
                      
                         </td>
@@ -223,7 +224,7 @@ export const TvGuide = ({hour, arr, dateInput, moreTime, lessTime, handleDateInp
                         {/* <th>Runtime (mins)</th> */}
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className='schedule-table'>
                     {tv.map(el => 
                     <tr key={el.id}>
                      <td>{el.airtime.match(hour + ":00") ? schedHour1 :
