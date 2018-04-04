@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import { Link, Switch, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import FaAngleDoubleLeft from 'react-icons/lib/fa/angle-double-left';
 import FaAngleDoubleRight from 'react-icons/lib/fa/angle-double-right'
 import '../../styling/homepg.css'
@@ -19,7 +19,6 @@ export class Schedule extends Component {
 
     // Handles date input by user. Gets US TV schedule for day specified.
     handleDateInput = () => {
-        const {userInput} = this.state;
         const userDate = document.getElementById('date').value;
         console.log('HI BEN')
         axios.get(`http://api.tvmaze.com/schedule?date=${userDate}`)
@@ -54,8 +53,8 @@ export class Schedule extends Component {
 
     // Decreases schedule time by 1 hour. Stops at mignight.
     handleLessTime = () => {
-        const {hour, userInput, dateInput} = this.state;
-        if (hour === new Date().getHours() && !dateInput) {
+        const {hour, dateInput} = this.state;
+        if ( (hour === new Date().getHours() && !dateInput) || (hour === 0) ) {
             this.setState({
                 hour: hour
             })
@@ -205,11 +204,15 @@ export const TvGuide = ({hour, arr, dateInput, moreTime, lessTime, handleDateInp
                         On Air:{" "}{schedHour1}{" - "}{schedHour2} <br />
                           {/* Buttons are diabled when user reaches midnight. */}
 
-                        <FaAngleDoubleRight  className={hour === 23 ? "arrow" : ""} size={80}  style={{float:'right', padding: '10px'}} disabled={hour === 23} onClick={moreTime}/>
+
+                        <FaAngleDoubleRight  className={hour === 23 ? "arrow" : ""} size={80}  
+                            style={{float:'right', padding: '10px'}} disabled={hour === 23} onClick={moreTime}/>
                         
                         {/* Buttons are diabled when user reaches 0. */}
 
-                        <FaAngleDoubleLeft  className={hour === new Date().getHours() && !dateInput ? "arrow" : ""} size={80} style={{float:'left', padding: '10px'}} disabled={hour === new Date().getHours() && !dateInput} onClick={lessTime}/>
+                        <FaAngleDoubleLeft  className={ (hour === new Date().getHours() && !dateInput) || (hour === 0)  ? "arrow" : ""} 
+                            size={80} style={{float:'left', padding: '10px'}} disabled={ (hour === new Date().getHours() && !dateInput) || (hour === 0) } 
+                            onClick={lessTime}/>
                      
                         </td>
                     </tr>

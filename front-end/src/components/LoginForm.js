@@ -4,10 +4,10 @@ import { VERIFY_USER } from '../Events'
 export default class LoginForm extends Component {
 	constructor(props) {
 	  super(props);
-	
 	  this.state = {
 	  	nickname:"",
-	  	error:""
+		  error:"",
+		  role:""
 	  };
 	}
 
@@ -35,7 +35,9 @@ export default class LoginForm extends Component {
 	setError = (error)=>{
 		this.setState({error})
 	}
-
+	handleRole = e =>{
+		this.setState({role:e.target.value})
+	}
 	render() {	
 		const { nickname, error } = this.state
 		return (
@@ -54,6 +56,12 @@ export default class LoginForm extends Component {
 						onChange={this.handleChange}
 						placeholder={'type username'}
 						/>
+						<select onChange={this.handleRole}>
+							<option value=""></option>
+							<option value="admin">admin</option>
+							<option value="user">user</option>
+							<option value="guest">guest</option>
+						</select>
 						<div className="error">{error ? error:null}</div>
 
 				</form>
