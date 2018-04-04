@@ -72,6 +72,10 @@ export class Room extends Component {
         return (
             <div className='Wait-Page' >
                 <img className='Wait-img' alt={showInfo.name} src={image.original} />
+                <div className="Wait-Bottom">
+                    Time Left: <Clock className='Countdown' deadline={deadline} name={showInfo.name} showid={showInfo.id} />
+                </div>
+                <Image rounded responsive className='Info-img' src={image.original} />
                 <div className="Summary">
                     <div className="blurb">
                         <h1 className="Wait-title">Show:{" "}{showInfo.name}</h1>
@@ -80,13 +84,12 @@ export class Room extends Component {
                         {/* Below regular expression from Stack Overflow: https://stackoverflow.com/a/822464 
                         This will remove any html elements within the summary string. i.e. <p> etc.*/}
                         <p> Summary:{" "}{summary ? summary.replace(/<(?:.|\n)*?>/gm, '') : "No summary avilable"}</p>
+                        <p className='sum'> Summary:{" "}{summary ? summary.replace(/(<p[^>]+?>|<p>|<\/p>)/img, "") : "No summary avilable"}</p>
                     </div>
                 </div>
                 <div className="Wait-sum">
                 </div>
-                <div className="Wait-Bottom">
-                    Time Left: <Clock className='Countdown' deadline={deadline} name={showInfo.name} showid={showInfo.id}/>
-                </div>
+
             </div>
         )
     }
