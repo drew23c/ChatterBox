@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import { Link, Switch, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import FaAngleDoubleLeft from 'react-icons/lib/fa/angle-double-left';
 import FaAngleDoubleRight from 'react-icons/lib/fa/angle-double-right'
 import '../../styling/homepg.css'
@@ -19,7 +19,6 @@ export class Schedule extends Component {
 
     // Handles date input by user. Gets US TV schedule for day specified.
     handleDateInput = () => {
-        const {userInput} = this.state;
         const userDate = document.getElementById('date').value;
         console.log('HI BEN')
         axios.get(`http://api.tvmaze.com/schedule?date=${userDate}`)
@@ -54,8 +53,8 @@ export class Schedule extends Component {
 
     // Decreases schedule time by 1 hour. Stops at mignight.
     handleLessTime = () => {
-        const {hour, userInput, dateInput} = this.state;
-        if (hour === new Date().getHours() && !dateInput) {
+        const {hour, dateInput} = this.state;
+        if ( (hour === new Date().getHours() && !dateInput) || (hour === 0) ) {
             this.setState({
                 hour: hour
             })
