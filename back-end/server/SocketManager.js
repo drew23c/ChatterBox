@@ -1,7 +1,7 @@
 const { VERIFY_USER, USER_CONNECTED, USER_DISCONNECTED, 
   LOGOUT, COMMUNITY_CHAT, MESSAGE_RECIEVED, MESSAGE_SENT,
   TYPING, PRIVATE_MESSAGE, NEW_CHAT_USER,
-  JOIN_ROOM} = require('../Events')
+  JOIN_ROOM, BROADCAST, SHOW} = require('../Events')
 
 const { createUser, createMessage, createChat } = require('../Factories')
 
@@ -53,8 +53,8 @@ return function(socket){
     }
     room.users = addUser(room.users, user);
     socket.join(roomName);
-    io.to(roomName).emit("broadcast", {description: `${Object.keys(room.users).length} online`}) 
-    io.to(roomName).emit("show", {show: `${socket.user.name} has entered`})   
+    io.to(roomName).emit(BROADCAST, {description: `${Object.keys(room.users).length} online`}) 
+    io.to(roomName).emit(SHOW, {show: `${socket.user.name} has entered`})   
     socket.on(MESSAGE_SENT, ({message}) => {
       io.to(roomName)
         .emit(MESSAGE_RECIEVED, 
@@ -72,8 +72,8 @@ return function(socket){
         let room = chatRooms[roomName];
         room.users = removeUser(room.users, user.name);
     io.emit(USER_DISCONNECTED, room.users);
-    io.to(roomName).emit("broadcast", {description: `${Object.keys(room.users).length} online`})
-    io.to(roomName).emit("show", {show: `${socket.user.name} has left`})
+    io.to(roomName).emit(BROADCAST, {description: `${Object.keys(room.users).length} online`})
+    io.to(roomName).emit(SHOW, {show: `${socket.user.name} has left`})
       }
     });
     //User logsout
@@ -81,8 +81,8 @@ return function(socket){
       let room = chatRooms[roomName];
       room.users = removeUser(room.users, socket.user.name);
       io.emit(USER_DISCONNECTED, connectedUsers);
-      io.to(roomName).emit("broadcast", {description: `${Object.keys(room.users).length} online`})
-      io.to(roomName).emit("show", {show: `${socket.user.name} has left`})   
+      io.to(roomName).emit(BROADCAST, {description: `${Object.keys(room.users).length} online`})
+      io.to(roomName).emit(SHOW, {show: `${socket.user.name} has left`})   
       
       console.log("Disconnect", connectedUsers);
     })

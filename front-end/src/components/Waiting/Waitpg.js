@@ -20,13 +20,13 @@ class Wait extends Component {
     //Add info about the show
     //Choose font for Summary  
     render() {
-        const {deadline, epInfo, image, showInfo, summary, network} = this.state;
+        const {deadline} = this.state;
         return (
             <Grid className='flex-container'>
                 <Row className='Wait-Bottom'>
                    <Col md={12}>
-                     <h1>{this.state.deadline}</h1>
-                         <h1>Time Left: <Clock className='Countdown' deadline={this.state.deadline} /></h1>
+                     <h1>{deadline}</h1>
+                         <h1>Time Left: <Clock className='Countdown' deadline={deadline} /></h1>
                            </Col>
                         </Row>  
 
