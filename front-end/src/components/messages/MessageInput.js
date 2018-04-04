@@ -9,13 +9,14 @@ export default class MessageInput extends Component {
 	  	message:"",
 	  	isTyping:false
 	  };
-
+	  
 	}
 	
 	handleSubmit = (e)=>{
 		e.preventDefault()
 		this.sendMessage()
 		this.setState({message:""})
+
 	}
 
 	sendMessage = ()=>{

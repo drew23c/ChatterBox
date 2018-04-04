@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SideBar from '../sidebar/SideBar'
 import { COMMUNITY_CHAT, MESSAGE_SENT, MESSAGE_RECIEVED, 
 				TYPING, PRIVATE_MESSAGE, USER_CONNECTED, USER_DISCONNECTED,
-				NEW_CHAT_USER, JOIN_ROOM } from '../../Events'
+				NEW_CHAT_USER, JOIN_ROOM, BROADCAST, SHOW } from '../../Events'
 import ChatHeading from './ChatHeading'
 import Messages from '../messages/Messages'
 import MessageInput from '../messages/MessageInput'
@@ -16,7 +16,7 @@ export default class ChatContainer extends Component {
 	  this.state = {
 		  chats:[],
 		  users:[],
-	  	activeChat:null
+		  activeChat:null
 	  }
 	}
 
@@ -60,7 +60,7 @@ export default class ChatContainer extends Component {
 				usersOnline: data.description
 				})
 			}
-			socket.on("broadcast", data =>{
+			socket.on(BROADCAST, data =>{
 				broadcast(data)
 			})
 
@@ -76,7 +76,7 @@ const show = data =>{
 					})
 				}, 10000)
 		 }
-		socket.on("show", data =>{
+		socket.on(SHOW, data =>{
 				show(data)
 		})
 
@@ -154,7 +154,7 @@ const show = data =>{
 				userSpam: data.spam
 				})
 			}
-			socket.on("broadcast", data =>{
+			socket.on(BROADCAST, data =>{
 					broadcast(data)
 				})
 
@@ -252,6 +252,7 @@ const show = data =>{
 									messages={activeChat.messages}
 									user={user}
 									typingUsers={activeChat.typingUsers}
+									spam={userSpam}
 									/>
 								<MessageInput 
 									sendMessage={

@@ -10,6 +10,7 @@ export default function({name, numberOfUsers, usersOnline, logout, user, show}) 
 			<div className="user-info">
 				<div className="user-name">{name}</div>
 				<div className="users-online"><b>{usersOnline}</b></div>
+				
 				<div className="status">
 					<div className="indicator"></div>
 					<span>{numberOfUsers ? numberOfUsers : null}</span>
