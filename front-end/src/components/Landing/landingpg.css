@@ -14,4 +14,5 @@
     margin: auto;
     text-transform: uppercase;
     font-weight: bold;
+    display: inline-block;
 }

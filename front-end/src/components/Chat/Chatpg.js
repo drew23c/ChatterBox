@@ -2,14 +2,11 @@ import React, {Component} from 'react';
 import {Switch, Route} from 'react-router-dom';
 import {Room} from '../TV-info/Info';
 import '../../styling/chatpg.css';
-import Layout from '../Layout'
+// import Layout from '../Layout'
 
 import { Grid, Row, Col } from 'react-bootstrap';
 
 class ChatPage extends Component {
-    constructor() {
-        super();
-    }
 
     renderRoom = (props) => {
         const { showid} = props.match.params;
@@ -20,7 +17,7 @@ class ChatPage extends Component {
                         <Room showid={showid} /> 
                      </Col>
                  <Col xs={10} md={6} lg={6}>
-                 <Layout roomName={showid} />
+                 {/* <Layout roomName={showid} /> */}
                      </Col>
                  </Row>
              </Grid>
