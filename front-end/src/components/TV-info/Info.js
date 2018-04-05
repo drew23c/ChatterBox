@@ -49,14 +49,11 @@ export class Room extends Component {
                 <Grid className='Chat-pg'>
                  <Row>
                     <Col xs={8} md={6} lg={6}>
-                <img className='Info-img' alt={showInfo.name} src={image.original} />
+                <Image className='Info-img' src={image.original} />
                 <h3>Show:{" "}{showInfo.name}</h3>
                 <h3>Episode:{" "}{epInfo.name}</h3>
-                <p id="sum">{summary ? summary.replace(/<(?:.|\n)*?>/gm, '') : "No summary avilable"}</p>
+                <p id="sum">{summary ? summary.replace(/(<p[^>]+?>|<p>|<\/p>)/img, "") : "No summary avilable"}</p>
                 <Link to="/">Back</Link>
-                </Col>
-                <Col xs={10} md={6} lg={6}>
-                <Layout roomName={showid} />
                 </Col>
               </Row>
           </Grid>
@@ -73,7 +70,6 @@ export class Room extends Component {
         summ.innerHTML = summary;
         return (
             <div className='Wait-Page' >
-                <img className='Wait-img' alt={showInfo.name} src={image.original} />
                 <div className="Wait-Bottom">
                     Time Left: <Clock className='Countdown' deadline={deadline} name={showInfo.name} showid={showInfo.id} />
                 </div>
@@ -83,9 +79,6 @@ export class Room extends Component {
                         <h1 className="Wait-title">Show:{" "}{showInfo.name}</h1>
                         <p> Season:{" "}{epInfo.season} Episode:{" "}{epInfo.number} </p>
                         <p> Network:{" "}{network.name} </p>
-                        {/* Below regular expression from Stack Overflow: https://stackoverflow.com/a/822464 
-                        This will remove any html elements within the summary string. i.e. <p> etc.*/}
-                        <p> Summary:{" "}{summary ? summary.replace(/<(?:.|\n)*?>/gm, '') : "No summary avilable"}</p>
                         <p className='sum'> Summary:{" "}{summary ? summary.replace(/(<p[^>]+?>|<p>|<\/p>)/img, "") : "No summary avilable"}</p>
                     </div>
                 </div>
