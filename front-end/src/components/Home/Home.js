@@ -12,15 +12,14 @@ class Home extends Component {
 
       <Grid>
         <Row className="show-grid colorFONT">
-          <Col md={9} md={7}>
+        <Col md={9} md={6}>
           <Schedule />
           </Col>
-          <Col md={9} md={5}>
+          <Col md={9} md={6}>
           <Popular />
           </Col>
         </Row>
-         
-    
+        
           </Grid>
         </div>
       );

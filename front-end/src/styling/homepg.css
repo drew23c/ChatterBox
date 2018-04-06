@@ -79,6 +79,7 @@ a {
   }
   .h1 {
     text-align: center;
+    color:black;
   }
   
   
@@ -114,6 +115,7 @@ a {
 
 #popular {
     width: 50vw;
+    overflow-y:auto;    
 }
 
 #pop-map {

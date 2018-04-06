@@ -60,7 +60,8 @@ export default class Layout extends Component {
 		const { socket, user } = this.state;
     const { roomName } = this.props;
 		return (
-			<div className="container">
+			// <div className="container">
+			<div className='chat-shadow'>
 				{
 					!user ?	
             <LoginForm 
