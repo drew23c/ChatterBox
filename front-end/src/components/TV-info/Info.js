@@ -2,9 +2,11 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import '../../styling/info.css'
+import '../../styling/waitingpg.css'
 import Clock from '../Waiting/Countdown';
 import Layout from '../Layout'
-import { Grid, Row, Col, Image } from 'react-bootstrap';
+import { Row, Grid, Col, Image, Button } from 'react-bootstrap';
+// import { Grid } from 'semantic-ui-react';
 
 export class Room extends Component {
     constructor(props) {
@@ -45,21 +47,32 @@ export class Room extends Component {
     renderChatroom = () => {
         const {showInfo, image, epInfo, summary, showid} = this.state;
         return (
-            <div>
                 <Grid className='Chat-pg'>
                  <Row>
-                    <Col xs={8} md={6} lg={6}>
-                <Image className='Info-img' src={image.original} />
-                <h3>Show:{" "}{showInfo.name}</h3>
-                <h3>Episode:{" "}{epInfo.name}</h3>
-                <p id="sum">{summary ? summary.replace(/(<p[^>]+?>|<p>|<\/p>)/img, "") : "No summary avilable"}</p>
-                <Link to="/">Back</Link>
+        
+                    <Col xs={6} md={6} lg={6}  style={{backgroundColor: 'white'}} >
+                    <Image className='Info-img' alt={showInfo.name} src={image.original} />
+                   
+                    <h3>Name:{" "}{showInfo.name}</h3>
+                    <h3>Episode:{" "}{epInfo.name}</h3>
+                    <h4>{summary ? summary.replace(/<(?:.|\n)*?>/gm, '') : "No summary available"}</h4>
+                   
+                    <Button bsStyle="default" bsSize="large" style={{'width':'150px'}}>
+
+                         <Link  to="/">Back</Link>
+                         </Button>
+                   
                 </Col>
+
+                <Col xs={6} md={5} lg={4} className='LogNChat'>
+                    <Layout roomName={showid} />
+                </Col>
+
               </Row>
           </Grid>
-            </div>
         )
     }
+
 
     renderWaitPage = () => {
         const {epInfo, image, showInfo, summary, network, airdate, airtime} = this.state;
@@ -69,23 +82,28 @@ export class Room extends Component {
         const summ= document.createElement("p");
         summ.innerHTML = summary;
         return (
-            <div className='Wait-Page' >
-                <div className="Wait-Bottom">
+            <Grid className='Wait-Page'>
+                <Row className="Wait-Bottom">
+                <Col xs={18} md={12} lg={12}>
                     Time Left: <Clock className='Countdown' deadline={deadline} name={showInfo.name} showid={showInfo.id} />
-                </div>
-                <Image rounded responsive className='Info-img' src={image.original} />
-                <div className="Summary">
-                    <div className="blurb">
-                        <h1 className="Wait-title">Show:{" "}{showInfo.name}</h1>
-                        <p> Season:{" "}{epInfo.season} Episode:{" "}{epInfo.number} </p>
-                        <p> Network:{" "}{network.name} </p>
-                        <p className='sum'> Summary:{" "}{summary ? summary.replace(/(<p[^>]+?>|<p>|<\/p>)/img, "") : "No summary avilable"}</p>
-                    </div>
-                </div>
-                <div className="Wait-sum">
-                </div>
+                </Col>
+                </Row>
 
-            </div>
+            <Row style={{'backgroundColor': '#DDDBCB'}}>
+            <Col xs={6} md={4} lg={4}>
+                    <Image rounded responsive className='Info-img' src={image.original} />
+                </Col>
+
+            <Col className="Summary" xs={6} md={4} lg={4}  >   
+                <h1>Show:{" "}{showInfo.name}</h1>
+                <p> Season:{" "}{epInfo.season} Episode:{" "}{epInfo.number} </p>
+                <p> Network:{" "}{network.name} </p>
+                {/* Below regular expression from Stack Overflow: https://stackoverflow.com/a/822464 
+                This will remove any html elements within the summary string. i.e. <p> etc.*/}
+                <p> Summary:{" "}{summary ? summary.replace(/<(?:.|\n)*?>/gm, '') : "No summary available"}</p>
+                    </Col>
+                </Row>
+            </Grid>
         )
     }
 

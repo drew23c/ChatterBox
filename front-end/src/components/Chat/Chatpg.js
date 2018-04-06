@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Switch, Route} from 'react-router-dom';
 import {Room} from '../TV-info/Info';
 import '../../styling/chatpg.css';
-// import Layout from '../Layout'
 
 import { Grid, Row, Col } from 'react-bootstrap';
 
@@ -13,11 +12,8 @@ class ChatPage extends Component {
         return (
             <Grid className='Chat-pg'>
                    <Row>
-                     <Col xs={8} md={6} lg={6}>
+                     <Col xs={18} md={12} lg={12}>
                         <Room showid={showid} /> 
-                     </Col>
-                 <Col xs={10} md={6} lg={6}>
-                 {/* <Layout roomName={showid} /> */}
                      </Col>
                  </Row>
              </Grid>

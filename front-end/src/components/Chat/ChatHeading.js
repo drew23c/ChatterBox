@@ -1,7 +1,4 @@
 import React from 'react';
-import FAVideo from 'react-icons/lib/fa/video-camera'
-import FAUserPlus from 'react-icons/lib/fa/user-plus'
-import MdEllipsisMenu from 'react-icons/lib/md/keyboard-control'
 import MdEject from 'react-icons/lib/md/eject'
 
 export default function({name, numberOfUsers, usersOnline, logout, user, show}) {

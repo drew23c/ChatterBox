@@ -41,16 +41,7 @@ export default class ChatContainer extends Component {
 	initSocket(socket){
     const {roomName, user} = this.props;
 		socket.emit(JOIN_ROOM, user, roomName, this.resetChat);
-		//socket.on(PRIVATE_MESSAGE, this.addChat)
-    /* Seems to be useless. Besides, the socket has long since
-     * connected with the server, if messages are being emitted back
-     * and forth. Which they must have been, because VERIFY_USER has
-     * necessarily been sent back and forth between the client and
-     * server.
-		socket.on('connect', ()=>{
-			socket.emit(COMMUNITY_CHAT, this.resetChat)
-		})
-    */
+	
 		socket.on(USER_CONNECTED, (users)=>{
 			this.setState({ users: values(users) })
 		})
@@ -114,22 +105,12 @@ const show = data =>{
 		this.setState({ chats: newChats })
 	}
 
-	/*
-	*	Reset the chat back to only the chat passed in.
-	* 	@param chat {Chat}
-	*/
+
 	resetChat = (chat)=>{
 		return this.addChat(chat, true)
 	}
 
-	/*
-	*	Adds chat to the chat container, if reset is true removes all chats
-	*	and sets that chat to the main chat.
-	*	Sets the message and typing socket events for the chat.
-	*	
-	*	@param chat {Chat} the chat to be added.
-	*	@param reset {boolean} if true will set the chat as the only chat.
-	*/
+
 	addChat = (chat, reset = false)=>{
 		const { socket } = this.props
 		const { chats } = this.state
@@ -234,14 +215,7 @@ const show = data =>{
 		return (
 			<div>
 			<div>
-				{/* <SideBar
-					chats={chats}
-					user={user}
-					users={users}
-					activeChat={activeChat}
-					setActiveChat={this.setActiveChat}
-					onSendPrivateMessage={this.sendOpenPrivateMessage}
-					/> */}
+		
 				<div className="chat-room-container">
 					{
 						activeChat !== null ? (
