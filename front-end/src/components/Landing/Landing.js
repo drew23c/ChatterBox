@@ -14,7 +14,7 @@ const Landing = () => {
                     <p>Chat about your favorite TV shows!</p>
                     <p>Connect with other fans!</p>
                     <p>Be free to be a chatterbox!</p>
-                    <Link to="/main" id="enter"><p>Enter</p></Link>
+                    <Link to="/schedule" id="enter"><p>Enter</p></Link>
                     <About />
                 </Col>
             </Row>

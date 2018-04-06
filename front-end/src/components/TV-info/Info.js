@@ -19,7 +19,8 @@ export class Room extends Component {
             summary: "", 
             airdate: "", 
             airtime: "", 
-            network: ""
+            network: "",
+            genSummary: ""
         }
     }
 
@@ -34,7 +35,8 @@ export class Room extends Component {
                 summary: res.data._embedded.nextepisode.summary,
                 airdate: res.data._embedded.nextepisode.airdate,
                 airtime: res.data._embedded.nextepisode.airtime,
-                network: res.data.network
+                network: res.data.network,
+                genSummary: res.data.summary
             })
         })
         .catch(error => console.log(error));
@@ -45,7 +47,7 @@ export class Room extends Component {
     }
 
     renderChatroom = () => {
-        const {showInfo, image, epInfo, summary, showid} = this.state;
+        const {showInfo, image, epInfo, summary, showid, genSummary} = this.state;
         return (
                 <Grid className='Chat-pg'>
                  <Row>
@@ -55,12 +57,11 @@ export class Room extends Component {
                    
                     <h3>Name:{" "}{showInfo.name}</h3>
                     <h3>Episode:{" "}{epInfo.name}</h3>
-                    <h4>{summary ? summary.replace(/<(?:.|\n)*?>/gm, '') : "No summary available"}</h4>
+                    <h4>{summary ? summary.replace(/<(?:.|\n)*?>/gm, '') : genSummary.replace(/<(?:.|\n)*?>/gm, '') }</h4>
                    
-                    <Button bsStyle="default" bsSize="large" style={{'width':'150px'}}>
-
-                         <Link  to="/">Back</Link>
-                         </Button>
+                    <Button bsStyle="default" bsSize="large" style={{'width':'150px'}} href="/schedule" >
+                        Back
+                    </Button>
                    
                 </Col>
 
@@ -75,7 +76,7 @@ export class Room extends Component {
 
 
     renderWaitPage = () => {
-        const {epInfo, image, showInfo, summary, network, airdate, airtime} = this.state;
+        const {epInfo, image, showInfo, summary, network, airdate, airtime, genSummary} = this.state;
         const deadline = (airdate).concat(" " + airtime);
 
         var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -100,7 +101,7 @@ export class Room extends Component {
                 <p> Network:{" "}{network.name} </p>
                 {/* Below regular expression from Stack Overflow: https://stackoverflow.com/a/822464 
                 This will remove any html elements within the summary string. i.e. <p> etc.*/}
-                <p> Summary:{" "}{summary ? summary.replace(/<(?:.|\n)*?>/gm, '') : "No summary available"}</p>
+                <p> Summary:{" "}{summary ? summary.replace(/<(?:.|\n)*?>/gm, '') : genSummary.replace(/<(?:.|\n)*?>/gm, '') }</p>
                     </Col>
                 </Row>
             </Grid>

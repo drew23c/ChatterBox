@@ -42,7 +42,7 @@ class Popular extends Component {
                 <h1>Popular Chat Rooms</h1>
                     {popular.map( (el, i) =>
                     <div id="pop-map"key={i}>
-                        <Link to={`/chat/${el.show.name}/${el.show.id}`}>
+                        <Link to={`/chat/${el.show.id}`}>
                             <img key={i} id="pop-img" alt={el.show.name} src={el.show.image.medium} /></Link>
                     </div>)}
                     

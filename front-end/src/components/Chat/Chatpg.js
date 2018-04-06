@@ -24,7 +24,7 @@ class ChatPage extends Component {
         return (
             <div>
                 <Switch>
-                    <Route path="/chat/:name/:showid" render={this.renderRoom} />
+                    <Route path="/chat/:showid" render={this.renderRoom} />
                 </Switch>
             </div>
         )
