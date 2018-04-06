@@ -67,6 +67,7 @@ export class Room extends Component {
                 <Col xs={6} md={5} lg={4} className='LogNChat'>
                     <Layout roomName={showid} />
                 </Col>
+
               </Row>
           </Grid>
         )
