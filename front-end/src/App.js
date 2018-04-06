@@ -20,7 +20,7 @@ class App extends Component {
                 </li>
               
               <li className="nav-item nav-itemColor">
-                <Link style={{color:'white'}} to="/main"> Main </Link>
+                <Link style={{color:'white'}} to="/schedule"> Schedule </Link>
               </li>
            </ul> 
          </div>
@@ -28,7 +28,7 @@ class App extends Component {
     <div className="mainbody">
     <Switch>
       <Route exact path="/" component={Landing} />
-      <Route path="/main" component={Home} />
+      <Route path="/schedule" component={Home} />
       <Route path="/chat" component={ChatPage} />
     </Switch>
     </div>
