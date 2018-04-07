@@ -6,7 +6,7 @@ import ChatContainer from './Chat/ChatContainer'
 import '../styling/chatstyles.css'
 
 
-const socketUrl = "http://localhost:3231"
+const socketUrl = "http://localhost:3100"
 export default class Layout extends Component {
 	
 	constructor(props) {

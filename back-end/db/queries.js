@@ -98,36 +98,36 @@ function getAllEpisodes(req, res, next) {
       })
 }
 
+// function getSingleShow(req, res, next) {
+//     db.one('SELECT * FROM shows where shows.id=${showid}',
+//         {
+//             showid: req.params.showID
+//         }
+//     )
+//       .then((data) => {
+//           res.status(200)
+//              .json({
+//                  data: data
+//              })
+//       }).catch((err) => {
+//           return next(err);
+//       })
+// }
+
+
+
 function getSingleShow(req, res, next) {
-    db.one('SELECT * FROM shows where shows.id=${showid}',
+    console.log('req: ', req.params)
+    db.any("SELECT shows.id, shows.name, episodes.ep_name, episodes.air_date, episodes.air_time, shows.network_name, episodes.season, episodes.num, episodes.summary, shows.show_summary, shows.rating, shows.img_URL " +
+    "FROM shows " +
+    "JOIN episodes ON shows.id = episodes.show_id " +
+    "WHERE shows.id=${showid} " +
+    "GROUP BY shows.id, shows.name, episodes.ep_name, episodes.air_date, episodes.air_time, shows.network_name, episodes.season, episodes.num, episodes.summary, shows.show_summary, shows.rating, shows.img_URL",
         {
             showid: req.params.showID
         }
+
     )
-      .then((data) => {
-          res.status(200)
-             .json({
-                 data: data
-             })
-      }).catch((err) => {
-          return next(err);
-      })
-}
-
-
-/*
-function getSingleShow(req, res, next) {
-    db.any(`
-    SELECT *
-    FROM shows
-    where shows.id = ${showid}
-    JOIN episodes ON shows.id = episodes.show_id
-    GROUP BY shows.id, shows.name, episodes.ep_name, episodes.air_date, episodes.air_time, shows.network_name, episodes.season, episodes.num, episodes.summary, shows.show_summary, shows.rating, shows.img_URL
-    `,
-            {
-                showid: req.params.showID
-            }
-        )
 
       .then((data) => {
           res.status(200)
@@ -135,10 +135,10 @@ function getSingleShow(req, res, next) {
                  data: data
              })
       }).catch((err) => {
+          console.log("error getting single show: ", err)
           return next(err);
       })
 }
-*/
 
 function getSchedule(req, res, next) {
     db.any(`

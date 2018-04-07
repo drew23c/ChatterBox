@@ -25,27 +25,30 @@ export class Room extends Component {
     }
 
     getShowInfo = () => {
-       let showID = this.props.match.params.showID;
+    // //    let showID = this.props.match.params.showID;
+    // let showID = this.state.showid.props.match.params.showID;
+    
         const {showid} = this.state;
-        axios.get(`http://localhost:3100/shows/${showID}`)
+        console.log('hi:' ,showid)
+        axios.get(`http://localhost:3100/shows/${showid}`)
         .then(res => {
             let apiArr = Object.keys(res.data).map(key => {
                 return res.data[key];
             })
-            let imageStuff = apiArr[0].filter(word => word.img_url.length > 1);
             
             this.setState({
-                showInfo: apiArr[0],
-                image: imageStuff,
-                // epInfo: res.data._embedded.nextepisode,
-                // summary: res.data._embedded.nextepisode.summary,
-                // airdate: res.data._embedded.nextepisode.airdate,
-                // airtime: res.data._embedded.nextepisode.airtime,
-                // network: res.data.network,
-                // genSummary: res.data.summary
+                showInfo: apiArr[0][0],
+                image: apiArr[0][0].img_url,
+                epInfo: apiArr[0][0].ep_name,
+                summary: apiArr[0][0].show_summary,
+                airdate: apiArr[0][0].air_date,
+                airtime: apiArr[0][0].air_time,
+                network: apiArr[0][0].network_name,
+                genSummary: apiArr[0][0].summary
             })
             console.log('showInfo: ',this.state.showInfo)
-            console.log('image: ',this.state.image)
+            console.log('image: ',this.state.showInfo.img_url)
+            
             
         })
         .catch(error => console.log(error));
@@ -123,9 +126,16 @@ export class Room extends Component {
         const hour = new Date().getHours();
         const hourStr = hour < 10 ? hour.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) : hour.toString();
         if ( hourStr === airtime.slice(0,2) ) {
-            return <this.renderChatroom />
+            return (
+            <div>
+                <this.renderChatroom />
+            </div>
+            )
         } else {
-            return <this.renderWaitPage />
+            return (
+            <div>
+                <this.renderWaitPage />
+            </div>)
         }
     }
 }

@@ -68,7 +68,7 @@ const TvGuide = ({hour, arr, dateInput, moreTime, lessTime, handleDateInput, han
                      <td>{el.air_time.match(hour + ":00") ? schedHour1 :
                             schedHour1.replace(" ", el.air_time.slice(2).concat(" ")) }</td>
              
-                 <td>{ dateInput ? el.name : <Link to={`/chat/${el.name}/${el.id}`}>{el.name}</Link>}</td>
+                 <td>{ dateInput ? el.name : <Link to={`/chat/${el.id}`}>{el.name}</Link>}</td>
                  <td>{el.network_name}</td>
                     </tr>)}
                 
