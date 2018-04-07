@@ -216,12 +216,13 @@ const show = data =>{
 						activeChat !== null ? (
 
 							<div className="chat-room">
-								<ChatHeading name={activeChat.name} placeholder={logout} logout={logout} usersOnline={usersOnline} show={userShow} />
+								<ChatHeading name={activeChat.name} placeholder={logout} logout={logout} usersOnline={usersOnline}  />
 								<Messages 
 									messages={activeChat.messages}
 									user={user}
 									typingUsers={activeChat.typingUsers}
 									spam={userSpam}
+									show={userShow}
 									/>
 								<MessageInput 
 									sendMessage={

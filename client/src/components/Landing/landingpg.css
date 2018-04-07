@@ -18,3 +18,7 @@
     font-weight: bold;
     display: inline-block;
 }
+
+.carousel-inner > .item > img {
+    margin: 0 auto;
+}

@@ -1,6 +1,5 @@
-body{
-    color:black;
-}
+@import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js");
+
 .blurb{
      text-align: left;
      font-size: 20px;

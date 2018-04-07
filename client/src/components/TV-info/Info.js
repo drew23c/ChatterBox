@@ -20,7 +20,9 @@ export class Room extends Component {
             airdate: "", 
             airtime: "", 
             network: "",
-            genSummary: ""
+            genSummary: "",
+            name:"",
+            season:""
         }
     }
 
@@ -44,7 +46,9 @@ export class Room extends Component {
                 airdate: apiArr[0][0].air_date,
                 airtime: apiArr[0][0].air_time,
                 network: apiArr[0][0].network_name,
-                genSummary: apiArr[0][0].summary
+                genSummary: apiArr[0][0].summary,
+                name: apiArr[0][0].name,
+                season: apiArr[0][0].season
             })
             console.log('showInfo: ',this.state.showInfo)
             console.log('image: ',this.state.showInfo.img_url)
@@ -59,16 +63,17 @@ export class Room extends Component {
     }
 
     renderChatroom = () => {
-        const {showInfo, image, epInfo, summary, showid, genSummary} = this.state;
+        const {showInfo, image, season, epInfo, name, summary, showid, genSummary} = this.state;
         return (
                 <Grid className='Chat-pg'>
                  <Row>
         
                     <Col xs={6} md={6} lg={6}  style={{backgroundColor: 'white'}} >
-                    <Image className='Info-img' alt={showInfo.name} src={image} />
+                    <Image className='Info-img' alt={name} src={image} />
                    
-                    <h3>Name:{" "}{showInfo.name}</h3>
-                    <h3>Episode:{" "}{epInfo.name}</h3>
+                    <h3>Name:{" "}{name}</h3>
+                    <p> Season:{" "}{season}</p>
+                    <h3>Episode:{" "}{epInfo}</h3>
                     <h4>{summary ? summary.replace(/<(?:.|\n)*?>/gm, '') : genSummary.replace(/<(?:.|\n)*?>/gm, '') }</h4>
                    
                     <Button bsStyle="default" bsSize="large" style={{'width':'150px'}} href="/schedule" >
@@ -88,7 +93,7 @@ export class Room extends Component {
 
 
     renderWaitPage = () => {
-        const {epInfo, image, showInfo, summary, network, airdate, airtime, genSummary} = this.state;
+        const {epInfo, image, showInfo, season, name, summary, network, airdate, airtime, genSummary} = this.state;
         const deadline = (airdate).concat(" " + airtime);
 
         var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -98,7 +103,7 @@ export class Room extends Component {
             <Grid className='Wait-Page'>
                 <Row className="Wait-Bottom">
                 <Col xs={18} md={12} lg={12}>
-                    Time Left: <Clock className='Countdown' deadline={deadline} name={showInfo.name} showid={showInfo.id} />
+                    Time Left: <Clock className='Countdown' deadline={deadline} name={name} showid={showInfo} />
                 </Col>
                 </Row>
 
@@ -108,9 +113,10 @@ export class Room extends Component {
                 </Col>
 
             <Col className="Summary" xs={6} md={4} lg={4}  >   
-                <h1>Show:{" "}{showInfo.name}</h1>
-                <p> Season:{" "}{epInfo.season} Episode:{" "}{epInfo.number} </p>
-                <p> Network:{" "}{network.name} </p>
+                <h1>Show:{" "}{name}</h1>
+                <p> Season:{" "}{season}</p>
+                <p>Episode:{" "}{epInfo} </p>
+                <p> Network:{" "}{network} </p>
                 {/* Below regular expression from Stack Overflow: https://stackoverflow.com/a/822464 
                 This will remove any html elements within the summary string. i.e. <p> etc.*/}
                 <p> Summary:{" "}{summary ? summary.replace(/<(?:.|\n)*?>/gm, '') : genSummary.replace(/<(?:.|\n)*?>/gm, '') }</p>
