@@ -1,0 +1,32 @@
+/* css for navbar */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  color:black;
+}
+
+.navbarColor {
+  background-color: #1b99aa;
+  box-shadow: 10px 2px 8px 0px, #333;
+  color:white;
+  font-size:20px;
+}
+
+.text{
+  color:white;
+}
+
+.nav-itemColor{
+  color:white;
+  text-transform: uppercase;
+}
+
+.nav-itemColor:hover{
+  background-color:#DDDBCB;
+  color:white;
+}
+.h1 {
+  text-align: center;
+}
+
