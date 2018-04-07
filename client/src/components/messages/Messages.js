@@ -21,11 +21,13 @@ export default class Messages extends Component {
 		this.scrollDown()
 	}
 	render() {		
-		const { messages, user, typingUsers } = this.props
+		const { messages, user, typingUsers ,show} = this.props
 		return (
 			<div ref='container'
 				className="thread-container">
 				<div className="thread">
+				<div className="user-show" id="userShow">{show}</div>
+
 					{
 						messages.map((mes)=>{
 							return (

@@ -140,7 +140,7 @@
 .message-container {
     display: flex;
     justify-content: flex-start;
-    min-height: 50px;
+    min-height: 100px;
     margin: 10px 15px;
     animation: .65s ease-out 0s show;
 } 

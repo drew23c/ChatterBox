@@ -56,13 +56,7 @@ export default class LoginForm extends Component {
 						onChange={this.handleChange}
 						placeholder={'type username'}
 						/>
-						<select onChange={this.handleRole}>
-							<option value=""></option>
-							<option value="admin">admin</option>
-							<option value="user">user</option>
-							<option value="guest">guest</option>
-						</select>
-						<div className="error">{error ? error:null}</div>
+					
 
 				</form>
 			</div>

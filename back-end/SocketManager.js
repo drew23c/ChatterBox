@@ -51,7 +51,7 @@ return function(socket){
     }
     room.users = addUser(room.users, user);
     socket.join(roomName);
-    io.to(roomName).emit(BROADCAST, {description: `${Object.keys(room.users).length} online`}) 
+    io.to(roomName).emit(BROADCAST, {description: `online (${Object.keys(room.users).length})`}) 
     io.to(roomName).emit(SHOW, {show: `${socket.user.name} has entered`})   
     socket.on(MESSAGE_SENT, ({message}) => {
       io.to(roomName)
@@ -65,7 +65,7 @@ return function(socket){
         let room = chatRooms[roomName];
         room.users = removeUser(room.users, user.name);
     io.emit(USER_DISCONNECTED, room.users);
-    io.to(roomName).emit(BROADCAST, {description: `${Object.keys(room.users).length} online`})
+    io.to(roomName).emit(BROADCAST, {description: `online (${Object.keys(room.users).length})`}) 
     io.to(roomName).emit(SHOW, {show: `${socket.user.name} has left`})
       }
     });
@@ -74,8 +74,8 @@ return function(socket){
       let room = chatRooms[roomName];
       room.users = removeUser(room.users, socket.user.name);
       io.emit(USER_DISCONNECTED, connectedUsers);
-      io.to(roomName).emit(BROADCAST, {description: `${Object.keys(room.users).length} online`})
-      io.to(roomName).emit(SHOW, {show: `${socket.user.name} has left`})   
+      // io.to(roomName).emit(BROADCAST, {description: `${Object.keys(room.users).length} online`})
+      // io.to(roomName).emit(SHOW, {show: `${socket.user.name} has left`})   
       
       console.log("Disconnect", connectedUsers);
     })
