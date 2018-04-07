@@ -9,17 +9,18 @@ function getAPI (url) {
             let listOfData = data.data;
                 for (let i=0; i<listOfData.length; i++){
                     let item = listOfData[i];
+
                     let showId = Number(item.show.id);
                     let showName = item.show.name;
                     let showType= item.show.type;
                     let showLanguage = item.show.language;
-                    let showIMG = item.show.image.original;
                     let showSummary = item.show.summary;
-                    let showNetworkName = item.show.network.name;
-                    let showRating = item.show.rating.average; 
+
+                    
                     let imageData = item.show.image;
                     let showRatingData = item.show.rating; 
                     let showNetworkData = item.show.network;
+                    let showNetworkNameData = item.show.network;
                     
                     let epId = Number(item.id);
                     let airDate = item.airdate;
@@ -29,7 +30,12 @@ function getAPI (url) {
                     let epSummary = item.summary;
                     let epName= item.name;
 
-           if (imageData&&showRatingData&&showNetworkName) {
+           if (imageData && showRatingData && showNetworkNameData) {
+
+            let showNetworkName = item.show.network.name;
+            let showRating = item.show.rating.average; 
+            let showIMG = item.show.image.original;
+
             db.none('INSERT INTO shows (id, name, type, language, img_URL, show_summary, network_name, rating, active) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) ON CONFLICT (id) DO NOTHING;', [showId, showName, showType, showLanguage, showIMG, showSummary, showNetworkName, showRating, true])
             .then(() => {
                 if (epSummary) {
@@ -158,7 +164,7 @@ function getSchedule(req, res, next) {
       })
 }
 
-getAPI('https://api.tvmaze.com/schedule/');
+//getAPI('https://api.tvmaze.com/schedule/');
 
 
 module.exports = {
