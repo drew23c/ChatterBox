@@ -1,7 +1,6 @@
 /* Login with username */
 .login-form{
-    padding-top:300px;
-    width:600px;
+    padding-top:200px;
     color:black;
 }
 
@@ -59,7 +58,6 @@
     align-items: center;
     /* padding: 18px 16px; */
     padding:20px 20px 18px 20px;
-    width:40vw;
     color:#1B9AAA;
     font-size: 22px;
 }
@@ -78,11 +76,8 @@
     display: flex
 }
 
-
 .chat-room-container {
     height: 100%;
-    width: 86.25%;
-    padding-left:100px;
 }
 
 @media screen and (max-width: 510px) {
@@ -107,9 +102,7 @@
 /* ChatBox container */
 .thread-container {
     display: grid;
-    right: 0;
     overflow-y: scroll;
-    width:40vw;
     height: 70vh;
 }
 
@@ -231,7 +224,6 @@
     background: white;
     color: white;
     box-sizing: border-box;
-    width:40vw;
 }
 
 .message-input .message-form {
@@ -244,7 +236,6 @@
 
 .message-input .message-form .form-control {
     resize: none;
-    padding-left: 15px;
     box-sizing: border-box;
     width: 80%;
     height: 100%;

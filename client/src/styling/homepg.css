@@ -6,7 +6,6 @@ body {
     padding-bottom: 200px;
     text-align: center;
     background-color:#F5F1E3;
-    position:fixed;
     height: 100%;
     color:black;
 }
@@ -18,27 +17,34 @@ table {
 table, td, th {
     border: 2px solid black;
     border-collapse: collapse;
+    background-color:#FFFFFF;
+    text-align: center;
 }
 
 .schedule-table{
     overflow-y:auto;
     height: 80vh;
+    width:80vh;
+    text-align: center;
 }
-td, th {
+ th {
     width: 250px;
-    height: 50px;
+    height: 30px;
+    background-color:white;
 }
 
 /* Controls head of TV Guide table. */
 #title {
     height: 100px;
+    background-color: #1B9AAA;
 }
 
 /* Controls style for "No shows at this time" message. */
 #tablefoot {
     text-transform: uppercase;
     margin-bottom: 0;
-    height: 20px;
+    background-color: #1B9AAA;
+    /* height: 9px; */
 }
 
 /* Controls styling for today's date and time.*/
@@ -112,6 +118,8 @@ a {
 .arrow{
     color:gray;
 }
+
+
 
 #popular {
     width: 50vw;

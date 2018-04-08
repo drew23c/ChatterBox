@@ -12,12 +12,33 @@
     color:black;
 }
 
+.info-col{
+height: 100vh;
+padding-top:200px;
+}
+
+.image-col{
+    height:100vh;
+}
 .Chat-pg {
     width:100vw;
     color:black;
 }
 .Info-img{
     padding-top:20px;
+    padding-bottom: 20px;
+    height: 550px;
+    width: 350px;
+}
+
+.LogNChat{
+    height:100vh;
+}
+
+.Wait-img{
+    padding-top:20px;
+    padding-bottom: 20px;
+    margin-left:150px;
     height: 550px;
     width: 350px;
 }
