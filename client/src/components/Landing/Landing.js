@@ -10,24 +10,38 @@ const Landing = () => {
         <Grid id="landing">
             <Row>
                 <Col xs={18} md={12} lg={12}>
-                    <h1 class='display-3'>Welcome to ChatterBox!</h1>
-                <Carousel>
-  <Carousel.Item>
-    <img width={500} height={200} alt="500x200" src="/shows1.png" />
-  </Carousel.Item>
-  <Carousel.Item>
-    <img width={500} height={200} alt="500x200" src="/fans1.png" />
-  </Carousel.Item>
-  <Carousel.Item>
-    <img width={500} height={500} alt="500x200" src="/chatter1.png" />
-  </Carousel.Item>
-</Carousel>
+                <Carousel className='carousel'>
+                    <Carousel.Item>
+                        <img width={500} height={500} alt="fans" src="/remote.jpg" />
+                        <Carousel.Caption>
+                        <h3>Tune in to your favorite show</h3>
+                        <Link to="/schedule" id="enter"><p>JOIN THE CHATTER</p></Link>
 
+                        </Carousel.Caption>
 
-                    <p>Chat about your favorite TV shows!</p>
-                    <p>Connect with other fans!</p>
-                    <p>Be free to be a chatterbox!</p>
-                    <Link to="/schedule" id="enter"><p>Enter</p></Link>
+                    </Carousel.Item>
+
+                    <Carousel.Item>
+                     <img width={500} height={500} alt="chats" src="/smile.png" />
+                        <Carousel.Caption>
+                        <h3>Connect with other televison fanatics </h3>
+                        <Link to="/schedule" id="enter"><p>JOIN THE CHATTER</p></Link>
+
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                    
+                    <Carousel.Item>
+                    <img width={500} height={500} alt="chatter" src="/laughing.jpeg" />
+                        <Carousel.Caption>
+                        <h3>Be free to join the chat!</h3>
+                        <Link to="/schedule" id="enter"><p>JOIN THE CHATTER</p></Link>
+
+                        </Carousel.Caption>
+                        
+                    </Carousel.Item>
+
+                </Carousel>
+
                     <About />
                 </Col>
             </Row>

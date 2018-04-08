@@ -63,26 +63,26 @@ export class Room extends Component {
     }
 
     renderChatroom = () => {
-        const {showInfo, image, season, epInfo, name, summary, showid, genSummary} = this.state;
+        const {showInfo, image, season, network, epInfo, name, summary, showid, genSummary} = this.state;
         return (
                 <Grid className='Chat-pg'>
                  <Row>
         
-                    <Col xs={6} md={6} lg={6}  style={{backgroundColor: 'white'}} >
-                    <Image className='Info-img' alt={name} src={image} />
-                   
-                    <h3>Name:{" "}{name}</h3>
-                    <p> Season:{" "}{season}</p>
-                    <h3>Episode:{" "}{epInfo}</h3>
-                    <h4>{summary ? summary.replace(/<(?:.|\n)*?>/gm, '') : genSummary.replace(/<(?:.|\n)*?>/gm, '') }</h4>
-                   
-                    <Button bsStyle="default" bsSize="large" style={{'width':'150px'}} href="/schedule" >
+                 <Col className='image-col' xs={6} md={4} lg={4}  style={{backgroundColor: 'white'}} >
+                 <h3>{name}</h3>                 
+                 <Image className='Info-img' alt={name} src={image} />
+                <p> Network: {network}</p>
+                <Button bsStyle="default" bsSize="large" style={{'width':'150px'}} href="/schedule" >
                         Back
                     </Button>
-                   
+                </Col> 
+                <Col className='info-col' xs={6} md={4} lg={4}>
+                    <h2> Season:{" "}{season}</h2>
+                    <h3>Episode:{" "}{epInfo}</h3>
+                    <h4>{summary ? summary.replace(/<(?:.|\n)*?>/gm, '') : genSummary.replace(/<(?:.|\n)*?>/gm, '') }</h4>
                 </Col>
 
-                <Col xs={6} md={5} lg={4} className='LogNChat'>
+                <Col xs={6} md={4} lg={4} className='LogNChat' style={{backgroundColor: 'white'}}>
                     <Layout roomName={showid} />
                 </Col>
 
@@ -108,11 +108,11 @@ export class Room extends Component {
                 </Row>
 
             <Row style={{'backgroundColor': '#DDDBCB'}}>
-            <Col xs={6} md={4} lg={4}>
-                    <Image rounded responsive className='Info-img' src={image} />
+            <Col xs={6} md={6} lg={6}>
+                    <Image rounded  className='Wait-img' src={image} />
                 </Col>
 
-            <Col className="Summary" xs={6} md={4} lg={4}  >   
+            <Col className="Summary" xs={6} md={6} lg={6}  >   
                 <h1>Show:{" "}{name}</h1>
                 <p> Season:{" "}{season}</p>
                 <p>Episode:{" "}{epInfo} </p>

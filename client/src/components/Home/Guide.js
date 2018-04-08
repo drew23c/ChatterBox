@@ -43,13 +43,13 @@ const TvGuide = ({hour, arr, dateInput, moreTime, lessTime, handleDateInput, han
                           {/* Buttons are diabled when user reaches midnight. */}
 
 
-                        <FaAngleDoubleRight  className={hour === 23 ? "arrow" : ""} size={80}  
+                        <FaAngleDoubleRight  className={hour === 23 ? "arrow" : ""} size={60}  
                             style={{float:'right', padding: '10px'}} disabled={hour === 23} onClick={moreTime}/>
                         
                         {/* Buttons are diabled when user reaches 0. */}
 
                         <FaAngleDoubleLeft  className={ (hour === new Date().getHours() && !dateInput) || (hour === 0)  ? "arrow" : ""} 
-                            size={80} style={{float:'left', padding: '10px'}} disabled={ (hour === new Date().getHours() && !dateInput) || (hour === 0) } 
+                            size={60} style={{float:'left', padding: '10px'}} disabled={ (hour === new Date().getHours() && !dateInput) || (hour === 0) } 
                             onClick={lessTime}/>
                      
                         </td>
@@ -59,7 +59,6 @@ const TvGuide = ({hour, arr, dateInput, moreTime, lessTime, handleDateInput, han
                         <th>Show</th>
                         <th>Network</th>
 
-                        {/* <th>Runtime (mins)</th> */}
                     </tr>
                 </thead>
                 <tbody className='schedule-table'>
