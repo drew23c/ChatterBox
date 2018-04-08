@@ -1,0 +1,51 @@
+@import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js");
+
+.blurb{
+     text-align: left;
+     font-size: 20px;
+     color:black;
+} 
+/*This is just the summary of the TV Info */
+
+#sum{
+    width:300px;
+    color:black;
+}
+
+.info-col{
+height: 100vh;
+padding-top:200px;
+}
+
+.image-col{
+    height:100vh;
+}
+.Chat-pg {
+    width:100vw;
+    color:black;
+}
+.Info-img{
+    padding-top:20px;
+    padding-bottom: 20px;
+    height: 550px;
+    width: 350px;
+}
+
+.LogNChat{
+    height:100vh;
+}
+
+.Wait-img{
+    padding-top:20px;
+    padding-bottom: 20px;
+    margin-left:150px;
+    height: 550px;
+    width: 350px;
+}
+
+.backButton{
+    color:white;
+    background-color:#1B9AAA;
+    font-size:20px;
+
+}

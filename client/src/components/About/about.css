@@ -1,0 +1,32 @@
+#about {
+    margin-top: 75px;
+    margin-left:-60px;
+}
+#about a {
+    margin-left: 10px;
+    color: #1b9aaa;
+    font-size: 2em;
+}
+
+#about p {
+    margin: auto;
+}
+
+#c4q {
+    padding-top: 1em;
+}
+
+.row-team{
+   text-align: center;
+   background-color:#DDDBCB;
+   width:104vw;
+}
+.team{
+   text-align: left;
+   padding-left:200px;
+}
+
+.people {
+    height: 80px;
+    width: 80px;
+}
