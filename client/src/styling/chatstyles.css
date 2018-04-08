@@ -159,7 +159,8 @@
     border-radius: 5px;
     border-top-left-radius: 0;
     box-sizing: border-box;
-    color: red;
+    background: #DDDBCB;
+    color: #fff;
     height: 100%;
     padding: 10px 15px;
     position: relative
@@ -169,9 +170,9 @@
 .message-container .message::before {
     border-bottom-color: transparent;
     border-left-color: transparent;
-    border-right-color: #fff;
+    border-right-color: #DDDBCB;
     border-style: solid;
-    border-top-color: #fff;
+    border-top-color: #DDDBCB;
     border-width: 4px;
     content: '';
     height: 0;
