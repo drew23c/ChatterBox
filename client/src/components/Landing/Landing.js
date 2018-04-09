@@ -15,7 +15,7 @@ const Info = () => (
           feel free to speak your mind with other outspoken fans 
           from all over the country! Don’t get lost in the fray with 
           other social media sites. ChatterBox is designed to prioritize 
-          your interests and allows your the space to speak your mind. 
+          your interests and allows you the space to speak your mind. 
     </h1>
 <h1><em>Join the chatter with ChatterBox!</em></h1>
     </div>
@@ -42,7 +42,7 @@ const Landing = () => {
                     <Carousel.Item>
                      <img width={500} height={500} alt="chats" src="/fans (1).png" />
                         <Carousel.Caption>
-                        <h3>Connect with other televison fanatics </h3> <br /> <br /> <br />  <br /> <br /> 
+                        <h3>Connect with other television fanatics </h3> <br /> <br /> <br />  <br /> <br /> 
                         <Link to="/schedule" id="enter"><p >JOIN THE CHATTER</p></Link>
 
                         </Carousel.Caption>
@@ -51,7 +51,7 @@ const Landing = () => {
                     <Carousel.Item>
                     <img width={500} height={500} alt="chatter" src="/remote1.png" />
                         <Carousel.Caption>
-                        <h3> To join the chat!</h3> <br /> <br /> <br />  <br /> <br /> 
+                        <h3> Join the chat!</h3> <br /> <br /> <br />  <br /> <br /> 
                         <Link to="/schedule" id="enter"><p >JOIN THE CHATTER</p></Link>
 
                         </Carousel.Caption>
