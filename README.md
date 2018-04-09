@@ -8,6 +8,8 @@ Connect with other fans!
 
 Be free to be a chatterbox!
 
+![ChatterBox Home Page](/client/public/chatterbox-screen-1.png)
+
 ## Features
 
 * Chat rooms for new episodes only.
@@ -15,6 +17,15 @@ Be free to be a chatterbox!
 * Chat rooms have a capcity limit.
 * Waiting rooms for shows yet to air that day.
 * TV schedule with listings of today's new episodes.
+
+Chat Room:
+![Chatting](client/public/chatterbox-screen-4.png)
+
+Waiting Page:
+![Wait Page](client/public/chatterbox-screen-5.png)
+
+TV Schedule:
+![TV schedule](/client/public/chatterbox-screen-2.png)
 
 ## Future
 
@@ -35,7 +46,7 @@ Be free to be a chatterbox!
 * Express
 * PostgreSQL
 * Socket.io
-* [TV Maze API] (http://www.tvmaze.com/api)
+* [TV Maze API](http://www.tvmaze.com/api)
 
 ## Installation
 
@@ -47,7 +58,7 @@ Be free to be a chatterbox!
 3. To run the back end:
     * Open a new terminal. 
     * `cd back-end` 
-    * `nodemon` 
+    * `nodemon` or `npm start`
 4. To run the database with PostgreSQL (on Linux):
     * Open a new terminal.
     * `cd back-end/db`
