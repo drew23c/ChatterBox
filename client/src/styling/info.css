@@ -12,11 +12,33 @@
     color:black;
 }
 
+.backbtn{
+    background: #FB6542;
+    color:#f5f1e3;
+}
+.second-half{
+    margin-top:0;
+    height:100vh;
+}
 .info-col{
 height: 100vh;
-padding-top:200px;
+padding-top:72px;
+width:250px;
 }
 
+.jumbo{
+    width:50vw;
+
+}
+
+.showname {
+    font-size: 35px;
+    text-shadow: 2px 2px 2px rgb(189, 187, 187);
+}
+
+h4{
+ text-align: left;
+}
 .image-col{
     height:100vh;
 }
@@ -27,18 +49,20 @@ padding-top:200px;
 .Info-img{
     padding-top:20px;
     padding-bottom: 20px;
-    height: 550px;
-    width: 350px;
+    height: 500px;
+    width: 300px;
 }
 
 .LogNChat{
-    height:100vh;
+    height:90vh;
+    width:550px;
+    margin-top:-4px;
 }
 
 .Wait-img{
     padding-top:20px;
     padding-bottom: 20px;
-    margin-left:150px;
+    margin-left:15px;
     height: 550px;
     width: 350px;
 }

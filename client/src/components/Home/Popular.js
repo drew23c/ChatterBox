@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import { Carousel } from 'react-bootstrap';
+import '../../styling/homepg.css'
 
 class Popular extends Component {
     constructor() {
@@ -45,14 +47,17 @@ class Popular extends Component {
         const {popular} = this.state;
         return ( 
             <div id="popular">
-                <h1>Popular Chat Rooms</h1>
+                <h1 className='popular-title'>Popular Chat Rooms</h1>
+                    <Carousel>
                     {popular.map( (el, i) =>
                     <div id="pop-map"key={i}>
+                        <Carousel.Item>
                         <Link to={`/chat/${el.id}`}>
                             <img key={i} id="pop-img" alt={el.name} src={el.img_url} />
                         </Link>
+                        </Carousel.Item>
                     </div>)}
-                    
+                    </Carousel>
             </div>
         )
     }

@@ -5,7 +5,7 @@ import '../../styling/info.css'
 import '../../styling/waitingpg.css'
 import Clock from '../Waiting/Countdown';
 import Layout from '../Layout'
-import { Row, Grid, Col, Image, Button } from 'react-bootstrap';
+import { Row, Grid, Col, Image, Button, Jumbotron} from 'react-bootstrap';
 // import { Grid } from 'semantic-ui-react';
 
 export class Room extends Component {
@@ -65,29 +65,36 @@ export class Room extends Component {
     renderChatroom = () => {
         const {showInfo, image, season, network, epInfo, name, summary, showid, genSummary} = this.state;
         return (
-                <Grid className='Chat-pg'>
-                 <Row>
-        
-                 <Col className='image-col' xs={6} md={4} lg={4}  style={{backgroundColor: 'white'}} >
-                 <h3>{name}</h3>                 
-                 <Image className='Info-img' alt={name} src={image} />
-                <p> Network: {network}</p>
-                <Button bsStyle="default" bsSize="large" style={{'width':'150px'}} href="/schedule" >
-                        Back
-                    </Button>
-                </Col> 
-                <Col className='info-col' xs={6} md={4} lg={4}>
-                    <h2> Season:{" "}{season}</h2>
-                    <h3>Episode:{" "}{epInfo}</h3>
-                    <h4>{summary ? summary.replace(/<(?:.|\n)*?>/gm, '') : genSummary.replace(/<(?:.|\n)*?>/gm, '') }</h4>
-                </Col>
+            <Grid className='Chat-pg'>
+                <Row>
 
-                <Col xs={6} md={4} lg={4} className='LogNChat' style={{backgroundColor: 'white'}}>
-                    <Layout roomName={showid} />
-                </Col>
+                    <Col className='first-half' xs={9} md={6} lg={6}>         
+                        <Row>       
+                            <Col xs={18} md={12} lg={12} className='title'>
+                                <h3 className='showname'>{name}</h3>                                                 
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col className='image' xs={9} md={6} lg={6}>
+                                <Image className='Info-img' alt={name} src={image} />
+                                <p> Network: {network}</p>                                
+                            </Col>
+                            <Col className='summary' xs={9} md={6} lg={6}>
+                                <h4>Episode:{" "}{epInfo}</h4>
+                                <h4>{summary ? summary.replace(/<(?:.|\n)*?>/gm, '') : genSummary.replace(/<(?:.|\n)*?>/gm, '') }</h4>
+                                <Button className='backbtn' bsStyle="default" bsSize="large" style={{'width':'150px'}} href="/schedule" >
+                                    Back
+                                </Button>
+                            </Col> 
+                        </Row>
+                    </Col>
 
-              </Row>
-          </Grid>
+                    <Col className='second-half' xs={9} md={6} lg={6}style={{backgroundColor: 'white'}}>
+                        <Layout roomName={showid} />
+                    </Col>
+
+                </Row>
+            </Grid>
         )
     }
 
@@ -108,11 +115,11 @@ export class Room extends Component {
                 </Row>
 
             <Row style={{'backgroundColor': '#DDDBCB'}}>
-            <Col xs={6} md={6} lg={6}>
+            <Col xs={6} md={5} lg={5}>
                     <Image rounded  className='Wait-img' src={image} />
                 </Col>
 
-            <Col className="Summary" xs={6} md={6} lg={6}  >   
+            <Col className="Summary" xs={6} md={7} lg={7}  >   
                 <h1>Show:{" "}{name}</h1>
                 <p> Season:{" "}{season}</p>
                 <p>Episode:{" "}{epInfo} </p>

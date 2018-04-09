@@ -4,6 +4,14 @@
     width:250px;
 }
 
+
+
+h3{
+    font-size: 40px;
+    text-shadow: 2px 4px black;
+}
+
+
 .display-3{
     font-size: 100px;
     text-shadow: 4px 4px rgb(201, 196, 196);
@@ -11,8 +19,6 @@
 }
 .carousel{
     width:98vw;
-    height:600px;
-    /* z-index: -1; */
 }
 
 
@@ -24,6 +30,22 @@
 #enter p {
     background-color: #1b9aaa;
     width: 200px;
+    color:#f5f1e3;
+    padding: 1em;
+    margin: auto;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.LandingContainer {
+    padding: 80px 120px;
+}
+
+#enter p:hover {
+    background-color: #1b9aaa;
+    width: 200px;
+    color:white;
     padding: 1em;
     margin: auto;
     text-transform: uppercase;
