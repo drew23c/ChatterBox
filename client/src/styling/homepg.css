@@ -14,17 +14,30 @@ table {
     margin: auto;
 }
 
+.homeclock{
+    font-size: 40px;
+    text-shadow: 2px 2px 2px rgb(189, 187, 187);
+}
+
+.popular-title {
+    text-align: center;
+    width:100vw;
+    font-size: 40px;
+    text-shadow: 2px 2px 2px rgb(189, 187, 187);
+}
 table, td, th {
     border: 2px solid black;
     border-collapse: collapse;
     background-color:#FFFFFF;
     text-align: center;
+    height:20px;
+    font-size:25px;
 }
 
 .schedule-table{
     overflow-y:auto;
-    height: 80vh;
-    width:80vh;
+    height: 50vh;
+    width:95vw;
     text-align: center;
 }
  th {
@@ -36,7 +49,7 @@ table, td, th {
 /* Controls head of TV Guide table. */
 #title {
     height: 100px;
-    background-color: #1B9AAA;
+    background-color: #1b9AAA;
 }
 
 /* Controls style for "No shows at this time" message. */
@@ -44,7 +57,7 @@ table, td, th {
     text-transform: uppercase;
     margin-bottom: 0;
     background-color: #1B9AAA;
-    /* height: 9px; */
+    height: 10px;
 }
 
 /* Controls styling for today's date and time.*/
@@ -54,7 +67,11 @@ table, td, th {
 }
 
 a {
-    color:050505;
+    color:#fb6542;
+}
+
+.iconSize{
+    font-size:10px;
 }
 
 #tvTable {
@@ -88,8 +105,6 @@ a {
     color:black;
   }
   
-  
-
 .footer {
     position: fixed;
     right: 0;
@@ -123,7 +138,7 @@ a {
 
 #popular {
     width: 50vw;
-    overflow-y:auto;    
+    text-align: center;
 }
 
 #pop-map {

@@ -1,4 +1,8 @@
 /* Login with username */
+body{
+    font-size:20px;
+}
+
 .login-form{
     padding-top:200px;
     color:black;
@@ -104,6 +108,9 @@
     display: grid;
     overflow-y: scroll;
     height: 70vh;
+    /* opacity: 0.3; */
+    background-position: center;
+    background: url('./chatbackground.png');
 }
 
 .thread-container::-webkit-scrollbar-track {
@@ -127,7 +134,8 @@
     flex-direction: column;
     justify-content: flex-end;
     color: #b3b2ca;
-    background: white;
+   
+    /* background: white; */
 }
 
 .message-container {
@@ -145,7 +153,7 @@
 .message-container .data {
     order: 2;
     height: 100%;
-    margin-left: 25px
+    margin-left: 25px;
 }
 
 .message-container .name {
@@ -159,11 +167,12 @@
     border-radius: 5px;
     border-top-left-radius: 0;
     box-sizing: border-box;
-    background: #DDDBCB;
+    background: #fb6542;
     color: #fff;
     height: 100%;
     padding: 10px 15px;
-    position: relative
+    position: relative;
+    font-size: 25px;
 } 
 
 
@@ -227,6 +236,8 @@
     box-sizing: border-box;
 }
 
+
+
 .message-input .message-form {
     height: 100%;
     width: 100%;
@@ -275,7 +286,7 @@
     border: none;
     height: 100%;
     color: #fff;
-    background: #3e3e5e;
+    background: #FB6542;
     transition: all .35s ease-out
 }
 
@@ -285,6 +296,6 @@
 
 .message-input .message-form .send:disabled {
     opacity: .2;
-    background: #5d5d8a
+    background: #FB6542;
 }
 

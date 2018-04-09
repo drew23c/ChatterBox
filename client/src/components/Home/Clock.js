@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import '../../styling/homepg.css'
 
 class Clock extends Component {
     constructor(props) {
@@ -29,7 +30,7 @@ class Clock extends Component {
         const {date} = this.state;
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         return (
-            <div>
+            <div className='homeclock'>
                 <p>{date.toLocaleDateString('en-US', options)}</p>
                 <p>Time Now:{" "}{date.toLocaleTimeString()}</p>
             </div>
