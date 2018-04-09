@@ -4,8 +4,8 @@
 }
 #about a {
     margin-left: 10px;
-    color: #1b9aaa;
-    font-size: 2em;
+    color: hsl(187, 73%, 39%);
+    font-size: 23px;
 }
 
 #about p {

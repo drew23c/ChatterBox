@@ -38,16 +38,15 @@ const TvGuide = ({hour, arr, dateInput, moreTime, lessTime, handleDateInput, han
             <table className='schedule-table'>
                 <thead>
                     <tr>
-                        <td id="title" colSpan="4">Schedule for:{" "}{date} <br /> 
-                        On Air:{" "}{schedHour1}{" - "}{schedHour2} <br />
+                        <td id="title" colSpan="4">
                           {/* Buttons are diabled when user reaches midnight. */}
-
 
                         <FaAngleDoubleRight  className={hour === 23 ? "arrow" : ""} size={60}  
                             style={{float:'right', padding: '10px'}} disabled={hour === 23} onClick={moreTime}/>
                         
                         {/* Buttons are diabled when user reaches 0. */}
-
+                        On Air:{" "}{schedHour1}{" - "}{schedHour2} 
+                        
                         <FaAngleDoubleLeft  className={ (hour === new Date().getHours() && !dateInput) || (hour === 0)  ? "arrow" : ""} 
                             size={60} style={{float:'left', padding: '10px'}} disabled={ (hour === new Date().getHours() && !dateInput) || (hour === 0) } 
                             onClick={lessTime}/>

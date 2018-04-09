@@ -6,6 +6,7 @@ import Wait from './components/Waiting/Waitpg'
 import Landing from './components/Landing/Landing';
 import './index.css';
 import './styling/homepg.css'
+import HomeIcon from 'react-icons/lib/fa/home'
 
 class App extends Component {
   render() {
@@ -13,15 +14,14 @@ class App extends Component {
       <div>
           <nav className="navbar-default navbar-fixed-top navbarColor">
             <div className="container-fluid text">
-             <img  className='navbar-header'alt='ChatterBox' src="logo.gif" width="110" height="40" />
+             <img  className='navbar-header'alt='ChatterBox' src="logoCROP.png" width="200" height="50" />
               <ul className="nav navbar-nav">
+                
                <li className="nav-item nav-itemColor">
-                <Link style={{color:'white'}} to="/"> Home </Link>
+                <Link  style={{color:'white'}} to="/"> <HomeIcon size={35}/> </Link>
                 </li>
               
-              <li className="nav-item nav-itemColor">
-                <Link style={{color:'white'}} to="/schedule"> Schedule </Link>
-              </li>
+    
            </ul> 
          </div>
         </nav>
