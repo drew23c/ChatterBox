@@ -47,10 +47,13 @@ class Popular extends Component {
     render() {
         let settings = {
             "dots": true,
-            "infinite": true,
+            "infinite": false,
             "speed": 500,
             "slidesToShow": 6,
-            "slidesToScroll": 1
+            "slidesToScroll": 1,
+            "lazyLoad" :true,
+            centerMode: true
+            
             };
 
 
@@ -64,9 +67,8 @@ class Popular extends Component {
 
                    {popular.map( (el, i) =>
                     <div id="pop-map"key={i}>
-                      
                         <Link to={`/chat/${el.id}`}>
-                            <img key={i} id="pop-img" alt={el.name} src={el.img_url} />
+                            <img key={i} style={{'paddingLeft': '100px'}} className="pop-img" alt={el.name} src={el.img_url} />
                         </Link>
                     </div>)}
                     </Slider>

@@ -21,7 +21,6 @@ class Home extends Component {
           <Popular />
           </Col>
         </Row>
-        
           </Grid>
         </div>
       );
