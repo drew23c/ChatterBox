@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
-import { Carousel } from 'react-bootstrap';
+import Slider from "react-slick";
 import '../../styling/homepg.css'
+
 
 class Popular extends Component {
     constructor() {
@@ -44,23 +45,37 @@ class Popular extends Component {
     }
 
     render() {
+        let settings = {
+            "dots": true,
+            "infinite": true,
+            "speed": 500,
+            "slidesToShow": 6,
+            "slidesToScroll": 1
+            };
+
+
         const {popular} = this.state;
         return ( 
+            
             <div id="popular">
                 <h1 className='popular-title'>Popular Chat Rooms</h1>
-                    <Carousel>
-                    {popular.map( (el, i) =>
+                <div className='popular2'>
+                <Slider {...settings}>
+
+                   {popular.map( (el, i) =>
                     <div id="pop-map"key={i}>
-                        <Carousel.Item>
+                      
                         <Link to={`/chat/${el.id}`}>
                             <img key={i} id="pop-img" alt={el.name} src={el.img_url} />
                         </Link>
-                        </Carousel.Item>
                     </div>)}
-                    </Carousel>
+                    </Slider>
+</div>
             </div>
+
         )
     }
 }
 
 export default Popular;
+
