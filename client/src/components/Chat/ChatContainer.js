@@ -136,12 +136,7 @@ const show = data =>{
 
 	}
 
-	/*
-	* 	Returns a function that will 
-	*	adds message to chat with the chatId passed in. 
-	*
-	* 	@param chatId {number}
-	*/
+
 	addMessageToChat = (chatId)=>{
 		return message => {
       console.log("Message:", message);
@@ -156,10 +151,7 @@ const show = data =>{
 		}
 	}
 
-	/*
-	*	Updates the typing of chat with id passed in.
-	*	@param chatId {number}
-	*/
+
 	updateTypingInChat = (chatId) =>{
 		return ({isTyping, user})=>{
 			if(user !== this.props.user.name){
@@ -181,21 +173,13 @@ const show = data =>{
 		}
 	}
 
-	/*
-	*	Adds a message to the specified chat
-	*	@param chatId {number}  The id of the chat to be added to.
-	*	@param message {string} The message to be added to the chat.
-	*/
+
 	sendMessage = (chatId, message)=>{
 		const { socket } = this.props
 		socket.emit(MESSAGE_SENT, {chatId, message} )
 	}
 
-	/*
-	*	Sends typing status to server.
-	*	chatId {number} the id of the chat being typed in.
-	*	typing {boolean} If the user is typing still or not.
-	*/
+
 	sendTyping = (chatId, isTyping)=>{
 		const { socket } = this.props
 		socket.emit(TYPING, {chatId, isTyping})

@@ -138,24 +138,32 @@ a {
 
 
 
-#popular {
+/* #popular {
     width: 50vw;
     text-align: center;
-}
+} */
 
 .popular2{
     width:90vw;  
     margin-left:50px;
     color: black;
+    text-align: center; 
+    padding-left:100px;
+    
 }
 #pop-map {
-    margin: 5px;
+    margin: 3px;
     display: inline-block;
+    text-align:center;
+    padding-left:100px;
+    
 }
 
-#pop-img {
+.pop-img {
     height: 250px;
     width: auto;
+    text-align: center;
+    padding-left:100px;
 }
 
 #popular a {
@@ -170,3 +178,18 @@ a {
 .slick-arrow:before {
     color: #1B9AAA!important;
 }
+
+
+.slick-slide {
+    text-align: center;
+    color: #419be0;
+    background: white;
+    margin: 10px;
+    padding-left:800px;
+    
+  }
+
+  .slick-slide img{
+    text-align: center!important;
+    padding-left:100px!important;
+  }
