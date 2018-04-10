@@ -165,3 +165,8 @@ a {
 .colorFONT{
     color:black;
 }
+
+/* Controls color of arrows on Popular Shows slider carousel. */
+.slick-arrow:before {
+    color: #1B9AAA!important;
+}
