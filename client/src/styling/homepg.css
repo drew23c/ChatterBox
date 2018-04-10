@@ -147,9 +147,7 @@ a {
     width:90vw;  
     margin-left:50px;
     color: black;
-    text-align: center; 
-    padding-left:100px;
-    
+    text-align: center;     
 }
 #pop-map {
     margin: 3px;
@@ -180,7 +178,7 @@ a {
 }
 
 
-.slick-slide {
+/* .slick-slide {
     text-align: center;
     color: #419be0;
     background: white;
@@ -192,4 +190,4 @@ a {
   .slick-slide img{
     text-align: center!important;
     padding-left:100px!important;
-  }
+  } */
