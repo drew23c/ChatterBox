@@ -47,11 +47,10 @@ class Popular extends Component {
     render() {
         let settings = {
             "dots": true,
-            "infinite": false,
+            "infinite": true,
             "speed": 500,
-            "slidesToShow": 6,
+            "slidesToShow": 4,
             "slidesToScroll": 1
-            
             };
 
 
