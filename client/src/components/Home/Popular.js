@@ -49,9 +49,8 @@ class Popular extends Component {
             "dots": true,
             "infinite": true,
             "speed": 500,
-            "slidesToShow": 6,
+            "slidesToShow": 4,
             "slidesToScroll": 1
-            
             };
 
 
