@@ -1,5 +1,6 @@
 var pgp = require('pg-promise')({});
-var connectionString = 'postgres://localhost/chatterbox1';
+// var connectionString = 'postgres://localhost/chatterbox1';
+var connectionString = process.env.DATABASE_URL;
 var db = pgp(connectionString);
 let axios = require('axios');
 

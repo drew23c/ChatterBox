@@ -1,12 +1,3 @@
-DROP DATABASE IF EXISTS chatterbox1;
-CREATE DATABASE chatterbox1;
-
-\c chatterbox1;
-
--- DROP TABLE IF EXISTS episodes;
--- DROP TABLE IF EXISTS shows;
-
-
 CREATE TABLE shows (
   id INTEGER PRIMARY KEY UNIQUE,
   name TEXT,
